@@ -26,7 +26,7 @@ export const history = createHistory();
 
 const middleware = [
   routerMiddleware(history),
-  logger,
+  // logger,
 ];
 
 export const store = createStore(
