@@ -8,10 +8,20 @@ export default compose(
   connect((state, ownProps) => {
     const { firebase } = state;
     const todosOwnAll = ownProps['todos.own.all'];
-    console.log('HERE1');
+    const { updateTodo } = ownProps;
     if (!isLoaded(todosOwnAll)) return {};
+    const todo = todosOwnAll[ownProps.todoKey];
     return {
-      todo: todosOwnAll[ownProps.todoKey],
+      todo,
+      toggleTodo: (completed) => {
+        updateTodo({
+          key: ownProps.todoKey,
+          data: {
+            ...todo,
+            completed,
+          }
+        })
+      },
     };
   })
 );
