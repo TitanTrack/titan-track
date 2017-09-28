@@ -42,7 +42,7 @@ export default compose(
         data,
       }) => {
         const todoPath = `${allTodosPath}/${key}`;
-        return ownProps.firebase.set(todoPath, data)
+        return ownProps.firebase.update(todoPath, data);
       },
     };
   })

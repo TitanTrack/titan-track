@@ -7,7 +7,6 @@ class TodosList extends Component {
   render () {
     const { todos } = this.props;
     if (!isLoaded(todos)) return (<Loading />);
-    console.log({todos});
     return (
       <div>
         {this.props.todos.map((todo) => (
