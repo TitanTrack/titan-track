@@ -15,6 +15,9 @@ class TodosPage extends Component {
       key,
       allTodos: todosOwnAll,
     }));
+    console.log({
+      todosOwnRootPopulated,
+    })
     return (
       <TodosList todos={todosOwnRootPopulated} />
     );

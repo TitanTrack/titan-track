@@ -4,6 +4,7 @@ import { isLoaded } from 'react-redux-firebase';
 import Loading from '../../utils/components/Loading';
 import Checkbox from 'material-ui/Checkbox';
 import Chip from 'material-ui/Chip';
+import TodosList from './TodosList';
 
 const TodoDetails = ({ todo }) => {
   if (todo.children.length < 1) return null;
@@ -25,6 +26,9 @@ class TodoItem extends Component {
           checked={todo.completed === true}
           onCheck={(event, isChecked) => toggleTodo(isChecked)}
           label={<span>{todo.title} <TodoDetails todo={todo}/></span>}
+        />
+        <TodosList
+          todos={todo.children}
         />
 
       </div>
