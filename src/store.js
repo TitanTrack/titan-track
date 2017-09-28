@@ -22,12 +22,13 @@ const rootReducer = combineReducers({
 });
 const initialState = {};
 
+export const history = createHistory();
+
 const middleware = [
   routerMiddleware(history),
   logger,
 ];
 
-export const history = createHistory();
 export const store = createStore(
   rootReducer,
   initialState,
