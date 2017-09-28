@@ -4,7 +4,7 @@ export default ({
 }) => {
   const todo = allTodos[key];
   const children = todo.children ?
-    Object.keys(todo.children).filter((isMember) => isMember) :
+    Object.keys(todo.children).filter((childKey) => todo.children[childKey]) :
     [];
   return {
     key,

@@ -8,7 +8,7 @@ export default compose(
   withTodos,
   connect((state, ownProps) => {
     const { firebase } = state;
-    const todosOwnAll = ownProps['todos.own.all'];
+    const todosOwnAll = ownProps.todosOwnAll;
     const { updateTodo } = ownProps;
     if (!isLoaded(todosOwnAll)) return {};
     const todoUnpopulatedChildren = populateTodo({

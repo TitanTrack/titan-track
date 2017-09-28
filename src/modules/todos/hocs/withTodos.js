@@ -9,6 +9,7 @@ export default compose(
     const { auth } = ownProps;
     if (!isLoaded(auth)) return {};
     return {
+      userTodosPath: `todos/${auth.uid}`,
       allTodosPath: `/todos/${auth.uid}/all`,
       rootTodosPath: `/todos/${auth.uid}/root`,
     };
@@ -22,21 +23,43 @@ export default compose(
     return [
       {
         path: rootTodosPath,
-        storeAs: 'todos.own.root',
+        storeAs: 'todosOwnRoot',
         queryParams: ['orderByKey'],
       },
       {
         path: allTodosPath,
-        storeAs: 'todos.own.all',
+        storeAs: 'todosOwnAll',
       },
     ];
   }),
   connect((state, ownProps) => {
     const { firebase } = state;
-    const { allTodosPath, rootTodosPath } = ownProps;
+    const { allTodosPath, rootTodosPath, userTodosPath } = ownProps;
     return {
-      'todos.own.all': dataToJS(firebase, 'todos.own.all'),
-      'todos.own.root': firebase.getIn(['ordered', 'todos.own.root']),
+      todosOwnAll: dataToJS(firebase, 'todosOwnAll'),
+      'todosOwnRoot': firebase.getIn(['ordered', 'todosOwnRoot']),
+      addTodoToList: ({
+        todoTitle,
+        listKey,
+      }) => {
+
+        const newTodoKey = ownProps.firebase.ref().push().key;
+        const newTodo = {
+          parents: {},
+          completed: false,
+          title: todoTitle,
+        };
+        const updates = {
+          [`all/${newTodoKey}`]: newTodo,
+        };
+        if (listKey) {
+          newTodo.parents[listKey] = true;
+          updates[`all/${listKey}/children/${newTodoKey}`] = newTodo;
+        } else {
+          updates[`root/${newTodoKey}`] = true;
+        }
+        return ownProps.firebase.update(userTodosPath, updates);
+      },
       updateTodo: ({
         key,
         data,

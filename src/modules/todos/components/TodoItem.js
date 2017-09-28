@@ -17,9 +17,8 @@ const TodoDetails = ({ todo }) => {
 
 class TodoItem extends Component {
   render () {
-    const { todo, toggleTodo } = this.props;
+    const { todo, toggleTodo, listDepth } = this.props;
     if (!isLoaded(todo)) return (<Loading />);
-    console.log({todo})
     return (
       <div>
         <Checkbox
@@ -28,9 +27,10 @@ class TodoItem extends Component {
           label={<span>{todo.title} <TodoDetails todo={todo}/></span>}
         />
         <TodosList
+          listDepth={listDepth + 1}
           todos={todo.children}
+          listKey={todo.key}
         />
-
       </div>
     );
   }
