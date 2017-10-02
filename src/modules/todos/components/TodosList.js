@@ -14,9 +14,15 @@ const style = {
 };
 
 const VISIBILITY_FILTERS = {
-  ALL: () => true,
-  INCOMPLETE: (todo) => !todo.completed,
-  COMPLETED: (todo) => todo.completed,
+  ALL: 'visibility_filters/all',
+  COMPLETED: 'visibility_filters/completed',
+  INCOMPLETE: 'visibility_filters/incomplete',
+};
+
+const VISIBILITY_FILTER_FNS = {
+  [VISIBILITY_FILTERS.ALL]: () => true,
+  [VISIBILITY_FILTERS.INCOMPLETE]: (todo) => !todo.completed,
+  [VISIBILITY_FILTERS.COMPLETED]: (todo) => todo.completed,
 };
 
 class TodosList extends Component {
@@ -32,7 +38,7 @@ class TodosList extends Component {
   }
 
   state = {
-    visibilityFilter: 'ALL',
+    visibilityFilter: VISIBILITY_FILTERS.ALL,
   }
 
   handleSetVisibilityFilter = (visibilityFilter) => {
@@ -64,16 +70,16 @@ class TodosList extends Component {
           value={this.state.visibilityFilter}
           onChange={this.handleSetVisibilityFilter}
         >
-          <Tab label="All" value="ALL" />
-          <Tab label="Incomplete" value="INCOMPLETE" />
-          <Tab label="Completed" value="COMPLETED" />
+          <Tab label="All" value={VISIBILITY_FILTERS.ALL} />
+          <Tab label="Incomplete" value={VISIBILITY_FILTERS.INCOMPLETE} />
+          <Tab label="Completed" value={VISIBILITY_FILTERS.COMPLETED} />
         </Tabs>
         <AddTodoItemForm
           onTodoAdd={onTodoAdd}
         />
         {todos
           .filter(
-            VISIBILITY_FILTERS[this.state.visibilityFilter]
+            VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
           ).map((todo) => (
           <TodoItem
             key={todo.key}

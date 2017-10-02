@@ -20,6 +20,14 @@ const MoreVertButton = (
   </IconButton>
 );
 
+const styles = {
+  completed: {
+    textDecoration:'line-through',
+    color: grey400,
+  },
+  incomplete: {},
+};
+
 class TodoItem extends Component {
   static propTypes = {
     title: string.isRequired,
@@ -53,6 +61,8 @@ class TodoItem extends Component {
       </IconMenu>
     );
 
+    const textStyle = completed ? styles.completed : styles.incomplete;
+
     return (
       <ListItem
         leftCheckbox={
@@ -62,7 +72,7 @@ class TodoItem extends Component {
           />
         }
         rightIconButton={TodoOptionsButton}
-        primaryText={title}
+        primaryText={<span style={textStyle}>{title}</span>}
       />
     );
   }
