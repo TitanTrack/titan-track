@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 import Formsy from 'formsy-react';
 import { FormsyText } from 'formsy-material-ui/lib';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,7 +12,10 @@ const styles = {
 
 class AddTodoItemForm extends Component {
   static propTypes = {
-    onTodoAdd: func.isRequired,
+    onSubmit: func.isRequired,
+    hintText: string.isRequired,
+    floatingLabelText: string.isRequired,
+    defaultValue: string,
   }
 
   state = {
@@ -32,8 +35,8 @@ class AddTodoItemForm extends Component {
   }
 
   handleValidSubmit = (model) => {
-    const { onTodoAdd } = this.props;
-    onTodoAdd(model.title);
+    const { onSubmit } = this.props;
+    onSubmit(model.title);
     this.refs.form.reset();
   }
 
@@ -42,6 +45,12 @@ class AddTodoItemForm extends Component {
   }
 
   render () {
+    const {
+      hintText,
+      floatingLabelText,
+      defaultValue,
+    } = this.props;
+
     return (
       <div style={styles.div}>
         <Formsy.Form
@@ -55,8 +64,9 @@ class AddTodoItemForm extends Component {
             name="title"
             validations={{}}
             validationError="Invalid input"
-            hintText="Type your new list item"
-            floatingLabelText="New item"
+            hintText={hintText}
+            floatingLabelText={floatingLabelText}
+            defaultValue={defaultValue}
             fullWidth
           />
           <RaisedButton

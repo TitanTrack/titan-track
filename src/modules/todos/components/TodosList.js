@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { array, func } from 'prop-types';
 import Paper from 'material-ui/Paper';
-import TodoItem from './TodoItem';
+import TodoItem from './TodoItem/index.js';
 import { List } from 'material-ui/List';
-import AddTodoItemForm from './AddTodoItemForm';
+import TodoItemForm from './TodoItem/TodoItemForm';
 import VisibilityFilter from './VisibilityFilter';
 import {
   VISIBILITY_FILTERS,
@@ -23,6 +23,7 @@ class TodosList extends Component {
     onTodoAdd: func.isRequired,
     onTodoDelete: func.isRequired,
     onTodoToggle: func.isRequired,
+    onTodoEdit: func.isRequired,
   }
 
   static defaultProps = {
@@ -54,6 +55,21 @@ class TodosList extends Component {
     });
   }
 
+  generateOnTodoEdit = (todoKey) => (todoTitle) => {
+    const { onTodoEdit } = this.props;
+    return onTodoEdit({
+      todoKey,
+      todoTitle,
+    });
+  }
+
+  handleTodoAdd = (todoTitle) => {
+    const { onTodoAdd } = this.props;
+    return onTodoAdd({
+      todoTitle,
+    });
+  }
+
   render () {
     const { todos, onTodoAdd } = this.props;
     return (
@@ -62,8 +78,10 @@ class TodosList extends Component {
           visibilityFilter={this.state.visibilityFilter}
           onSetVisibilityFilter={this.handleSetVisibilityFilter}
         />
-        <AddTodoItemForm
-          onTodoAdd={onTodoAdd}
+        <TodoItemForm
+          onSubmit={this.handleTodoAdd}
+          hintText="Write something to add to your list"
+          floatingLabelText="Add new item"
         />
         {todos
           .filter(
@@ -76,6 +94,7 @@ class TodosList extends Component {
             completed={todo.completed}
             onTodoToggle={this.generateOnTodoToggle(todo.key)}
             onTodoDelete={this.generateOnTodoDelete(todo.key)}
+            onTodoEdit={this.generateOnTodoEdit(todo.key)}
           />
         ))}
       </Paper>

@@ -1,16 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
-import { linkTo } from '@storybook/addon-links';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import TodosList from '../src/modules/todos/components/TodosList';
-
-const wrapWithTheme = (storyFn) => (
-  <MuiThemeProvider>
-    { storyFn() }
-  </MuiThemeProvider>
-);
+import wrapWithTheme from './libs/wrapWithTheme';
 
 const todos = [
   { key: '1', title: 'First Item', completed: true },
@@ -34,8 +28,17 @@ const onTodoToggle = ({
   action(`toggled todo: ${todoKey} to: ${completed}`)();
 }
 
-const onTodoAdd = (todoTitle) => {
+const onTodoAdd = ({
+  todoTitle,
+}) => {
   action(`added todo with title: ${todoTitle}`)();
+}
+
+const onTodoEdit = ({
+  todoKey,
+  todoTitle,
+}) => {
+  action(`edited todo item with key: ${todoKey} to have title: ${todoTitle}`)();
 }
 
 export default () => {
@@ -46,6 +49,7 @@ export default () => {
         onTodoDelete={onTodoDelete}
         onTodoToggle={onTodoToggle}
         onTodoAdd={onTodoAdd}
+        onTodoEdit={onTodoEdit}
         todos={todos}
       />
     ));
