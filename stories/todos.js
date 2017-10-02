@@ -1,8 +1,7 @@
 import React from 'react';
-
+import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import { linkTo } from '@storybook/addon-links';
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import TodosList from '../src/modules/todos/components/TodosList';
@@ -25,14 +24,18 @@ const todos = [
 const onTodoDelete = ({
   todoKey,
 }) => {
-  console.log(`Deleting todo with key: ${todoKey}`);
+  action(`deleted todo with key: ${todoKey}`)();
 }
 
 const onTodoToggle = ({
   todoKey,
   completed,
 }) => {
-  console.log(`Toggling todo with key: ${todoKey} to: ${completed}`)
+  action(`toggled todo: ${todoKey} to: ${completed}`)();
+}
+
+const onTodoAdd = (todoTitle) => {
+  action(`added todo with title: ${todoTitle}`)();
 }
 
 export default () => {
@@ -42,6 +45,7 @@ export default () => {
       <TodosList
         onTodoDelete={onTodoDelete}
         onTodoToggle={onTodoToggle}
+        onTodoAdd={onTodoAdd}
         todos={todos}
       />
     ));

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "create-react-class": "^15.6.2",
+    "formsy-material-ui": "^0.6.3",
+    "formsy-react": "^0.19.5",
     "material-ui": "^0.19.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
@@ -27,7 +30,6 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.3.0-alpha.1",
-    "@storybook/react": "^3.2.11"
+    "@storybook/react": "^3.3.0-alpha.1"
   }
 }
