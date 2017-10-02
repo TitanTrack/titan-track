@@ -8,6 +8,9 @@ const styles = {
   div: {
     padding: '15px',
   },
+  cancelButton: {
+    marginLeft: '15px',
+  },
 };
 
 class AddTodoItemForm extends Component {
@@ -16,6 +19,7 @@ class AddTodoItemForm extends Component {
     hintText: string.isRequired,
     floatingLabelText: string.isRequired,
     defaultValue: string,
+    onCancel: func,
   }
 
   state = {
@@ -49,6 +53,7 @@ class AddTodoItemForm extends Component {
       hintText,
       floatingLabelText,
       defaultValue,
+      onCancel,
     } = this.props;
 
     return (
@@ -74,6 +79,15 @@ class AddTodoItemForm extends Component {
             label="Submit"
             disabled={!this.state.canSubmit}
           />
+          {onCancel ?
+            <RaisedButton
+              style={styles.cancelButton}
+              type="button"
+              label="Cancel"
+              onClick={onCancel}
+            /> :
+            null
+          }
         </Formsy.Form>
       </div>
     );

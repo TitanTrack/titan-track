@@ -22,6 +22,7 @@ class EditTodoItem extends Component {
   render () {
     const {
       title,
+      toggleView,
     } = this.props;
 
     return (
@@ -30,6 +31,7 @@ class EditTodoItem extends Component {
         hintText="Type to change your item's title"
         floatingLabelText="Edit item title"
         defaultValue={title}
+        onCancel={toggleView}
       />
     )
   }
