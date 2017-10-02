@@ -27,6 +27,7 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.0-alpha.1",
     "@storybook/react": "^3.2.11"
   }
 }
