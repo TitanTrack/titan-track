@@ -3,26 +3,18 @@ import { array, func } from 'prop-types';
 import Paper from 'material-ui/Paper';
 import TodoItem from './TodoItem';
 import { List } from 'material-ui/List';
-import { Tabs, Tab } from 'material-ui/Tabs';
 import AddTodoItemForm from './AddTodoItemForm';
+import VisibilityFilter from './VisibilityFilter';
+import {
+  VISIBILITY_FILTERS,
+  VISIBILITY_FILTER_FNS,
+} from '../consts/VISIBILITY_FILTERS';
 
 const style = {
   paper: {
     padding: '5px',
     display: 'block',
   },
-};
-
-const VISIBILITY_FILTERS = {
-  ALL: 'visibility_filters/all',
-  COMPLETED: 'visibility_filters/completed',
-  INCOMPLETE: 'visibility_filters/incomplete',
-};
-
-const VISIBILITY_FILTER_FNS = {
-  [VISIBILITY_FILTERS.ALL]: () => true,
-  [VISIBILITY_FILTERS.INCOMPLETE]: (todo) => !todo.completed,
-  [VISIBILITY_FILTERS.COMPLETED]: (todo) => todo.completed,
 };
 
 class TodosList extends Component {
@@ -66,14 +58,10 @@ class TodosList extends Component {
     const { todos, onTodoAdd } = this.props;
     return (
       <Paper style={style.paper}>
-        <Tabs
-          value={this.state.visibilityFilter}
-          onChange={this.handleSetVisibilityFilter}
-        >
-          <Tab label="All" value={VISIBILITY_FILTERS.ALL} />
-          <Tab label="Incomplete" value={VISIBILITY_FILTERS.INCOMPLETE} />
-          <Tab label="Completed" value={VISIBILITY_FILTERS.COMPLETED} />
-        </Tabs>
+        <VisibilityFilter
+          visibilityFilter={this.state.visibilityFilter}
+          onSetVisibilityFilter={this.handleSetVisibilityFilter}
+        />
         <AddTodoItemForm
           onTodoAdd={onTodoAdd}
         />
