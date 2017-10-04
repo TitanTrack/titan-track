@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
 import Formsy from 'formsy-react';
-import { FormsyText } from 'formsy-material-ui/lib';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
 
 const styles = {
   div: {
@@ -13,85 +13,83 @@ const styles = {
   },
 };
 
-class AddTodoItemForm extends Component {
+const initialState = {
+  title: '',
+};
+
+class TodoItemForm extends Component {
   static propTypes = {
     onSubmit: func.isRequired,
-    hintText: string.isRequired,
-    floatingLabelText: string.isRequired,
-    defaultValue: string,
+    placeholder: string.isRequired,
+    label: string.isRequired,
+    title: string,
     onCancel: func,
   }
 
-  state = {
-    canSubmit: true,
+  state = initialState
+
+  constructor(props) {
+    super(props);
+    this.state = this.getInitialState();
   }
 
-  enableSubmit = () => {
-    this.setState({
-      canSubmit: true,
-    });
+  getInitialState = () => {
+    const { title } = this.props;
+    return {
+      title: title ? title : '',
+    };
   }
 
-  disableSubmit = () => {
-    this.setState({
-      canSubmit: false,
-    });
-  }
-
-  handleValidSubmit = (model) => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { onSubmit } = this.props;
-    onSubmit(model.title);
-    this.refs.form.reset();
+    onSubmit(this.state.title);
+    this.setState(this.getInitialState());
   }
 
-  handleInvalidSubmit = () => {
-    console.log('Invalid submit!');
+  handleChange = (e) => {
+    this.setState({
+      title: e.target.value,
+    });
   }
 
   render () {
     const {
-      hintText,
-      floatingLabelText,
+      placeholder,
+      label,
       defaultValue,
       onCancel,
     } = this.props;
 
     return (
       <div style={styles.div}>
-        <Formsy.Form
-          ref="form"
-          onValid={this.enableSubmit}
-          onInvalid={this.disableSubmit}
-          onValidSubmit={this.handleValidSubmit}
-          onInvalidSubmit={this.handleInvalidSubmit}
-        >
-          <FormsyText
-            name="title"
-            validations={{}}
-            validationError="Invalid input"
-            hintText={hintText}
-            floatingLabelText={floatingLabelText}
-            defaultValue={defaultValue}
+        <form onSubmit={this.handleSubmit} >
+          <TextField
+            label={label}
+            placeholder={placeholder}
+            value={this.state.title}
+            onChange={this.handleChange}
             fullWidth
           />
-          <RaisedButton
+          <Button
             type="submit"
-            label="Submit"
-            disabled={!this.state.canSubmit}
-          />
+            raised
+          >
+            Submit
+          </Button>
           {onCancel ?
-            <RaisedButton
+            <Button
+              raised
               style={styles.cancelButton}
               type="button"
-              label="Cancel"
               onClick={onCancel}
-            /> :
+            >Cancel</Button> :
             null
           }
-        </Formsy.Form>
+        </form>
       </div>
     );
   }
 }
 
-export default AddTodoItemForm;
+export default TodoItemForm;

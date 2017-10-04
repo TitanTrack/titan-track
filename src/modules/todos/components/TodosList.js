@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { array, func } from 'prop-types';
 import Paper from 'material-ui/Paper';
 import TodoItem from './TodoItem/index.js';
-import { List } from 'material-ui/List';
+import List from 'material-ui/List';
 import TodoItemForm from './TodoItem/TodoItemForm';
 import VisibilityFilter from './VisibilityFilter';
 import {
@@ -72,21 +72,12 @@ class TodosList extends Component {
 
   render () {
     const { todos, onTodoAdd } = this.props;
-    return (
-      <Paper style={style.paper}>
-        <VisibilityFilter
-          visibilityFilter={this.state.visibilityFilter}
-          onSetVisibilityFilter={this.handleSetVisibilityFilter}
-        />
-        <TodoItemForm
-          onSubmit={this.handleTodoAdd}
-          hintText="Write something to add to your list"
-          floatingLabelText="Add new item"
-        />
-        {todos
-          .filter(
-            VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
-          ).map((todo) => (
+    const filteredTodos = todos.filter(
+      VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
+    );
+    const TodoItems = () => (
+      <List>
+        {filteredTodos.map((todo) => (
           <TodoItem
             key={todo.key}
             todoKey={todo.key}
@@ -97,6 +88,20 @@ class TodosList extends Component {
             onTodoEdit={this.generateOnTodoEdit(todo.key)}
           />
         ))}
+      </List>
+    );
+    return (
+      <Paper style={style.paper}>
+        <VisibilityFilter
+          visibilityFilter={this.state.visibilityFilter}
+          onSetVisibilityFilter={this.handleSetVisibilityFilter}
+        />
+        <TodoItemForm
+          onSubmit={this.handleTodoAdd}
+          placeholder="Write something to add to your list"
+          label="Add new item"
+        />
+        <TodoItems />
       </Paper>
     );
   }

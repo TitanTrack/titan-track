@@ -28,9 +28,9 @@ class EditTodoItem extends Component {
     return (
       <TodoItemForm
         onSubmit={this.handleTodoEdit}
-        hintText="Type to change your item's title"
-        floatingLabelText="Edit item title"
-        defaultValue={title}
+        placeholder="Type to change your item's title"
+        label="Edit item title"
+        title={title}
         onCancel={toggleView}
       />
     )

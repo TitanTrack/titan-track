@@ -1,10 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import TodosList from '../src/modules/todos/components/TodosList';
-import wrapWithTheme from './libs/wrapWithTheme';
 
 const todos = [
   { key: '1', title: 'First Item', completed: true },
@@ -43,7 +41,6 @@ const onTodoEdit = ({
 
 export default () => {
   storiesOf('Todos', module)
-    .addDecorator(wrapWithTheme)
     .add('with mixed todo items', () => (
       <TodosList
         onTodoDelete={onTodoDelete}

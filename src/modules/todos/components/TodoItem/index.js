@@ -21,9 +21,9 @@ class TodoItem extends Component {
     return onTodoDelete();
   }
 
-  handleTodoToggle = (e, checked) => {
-    const { onTodoToggle } = this.props;
-    return onTodoToggle(checked);
+  handleTodoToggle = () => {
+    const { onTodoToggle, completed } = this.props;
+    return onTodoToggle(!completed);
   }
 
   handleTodoEdit = (todoTitle) => {
