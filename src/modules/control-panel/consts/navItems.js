@@ -1,8 +1,8 @@
 import React from 'react';
-import MenuIcon from 'material-ui-icons/Menu';
-import EditIcon from 'material-ui-icons/Edit';
-import CheckIcon from 'material-ui-icons/Check';
 import DashboardIcon from 'material-ui-icons/Dashboard';
+import CheckIcon from 'material-ui-icons/Check';
+import SettingsIcon from 'material-ui-icons/Settings';
+
 
 const navItems = [{
   label: 'Dashboard',
@@ -12,6 +12,10 @@ const navItems = [{
   label: 'Todos',
   icon: <CheckIcon />,
   path: '/todos',
+}, {
+  label: 'Settings',
+  icon: <SettingsIcon />,
+  path: '/settings',
 }];
 
 export default navItems;
