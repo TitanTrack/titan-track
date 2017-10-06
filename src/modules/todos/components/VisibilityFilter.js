@@ -4,7 +4,7 @@ import { func, string } from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 
 
-import { VISIBILITY_FILTERS } from '../consts/VISIBILITY_FILTERS';
+import { VISIBILITY_FILTERS } from '../consts';
 
 const styles = theme => ({
   root: {

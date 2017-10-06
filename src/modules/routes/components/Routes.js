@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router';
 import { history } from '../../../store';
-import MainLayout from '../../control-panel/components/MainLayout';
+import ControlPanelMainLayout from '../../control-panel/components/MainLayout';
 
 import SigninPage from '../../auth/components/SigninPage';
 import DashboardPage from '../../dashboard/components/DashboardPage';
-import TodosPage from '../../todos/components/TodosPage';
+import TodosMainPage from '../../todos/components/TodosMainPage';
+import TodosListPage from '../../todos/components/TodosListPage';
 import SettingsPage from '../../settings/components/SettingsPage';
 
 class Routes extends Component {
@@ -13,10 +14,30 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={() => (<MainLayout><DashboardPage /></MainLayout>)} />
-          <Route exact path="/todos" component={() => (<MainLayout><TodosPage /></MainLayout>)} />
-          <Route exact path="/settings" component={() => (<MainLayout><SettingsPage /></MainLayout>)} />
-          <Route exact path="/signin" component={() => (<MainLayout><SigninPage /></MainLayout>)} />
+          <Route
+            exact
+            path="/"
+            component={() => (<ControlPanelMainLayout><DashboardPage /></ControlPanelMainLayout>)}
+          />
+          <Route
+            exact
+            path="/todos"
+            component={() => (<ControlPanelMainLayout><TodosMainPage /></ControlPanelMainLayout>)}
+          />
+          <Route
+            path="/todos/:tid"
+            component={() => (<ControlPanelMainLayout><TodosListPage /></ControlPanelMainLayout>)}
+          />
+          <Route
+            exact
+            path="/settings"
+            component={() => (<ControlPanelMainLayout><SettingsPage /></ControlPanelMainLayout>)}
+          />
+          <Route
+            exact
+            path="/signin"
+            component={() => (<ControlPanelMainLayout><SigninPage /></ControlPanelMainLayout>)}
+          />
         </Switch>
       </Router>
     );

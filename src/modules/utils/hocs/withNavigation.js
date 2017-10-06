@@ -4,7 +4,6 @@ import { compose, withProps } from 'recompose';
 export default compose(
   withRouter,
   withProps((ownProps) => ({
-    go: ownProps.history.push,
-    isActive: (regex) => ownProps.match.path === regex,
+    isActive: (regex) => ownProps.match.path.match(regex),
   })),
 );

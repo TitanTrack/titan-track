@@ -16,13 +16,7 @@ class NakedNavItem extends Component {
     icon: object.isRequired,
     activeRegex: string.isRequired,
     path: string.isRequired,
-    onClick: func,
-    go: func,
-  }
-
-  handleClick = () => {
-    const { go, path } = this.props;
-    go(path);
+    isActive: func.isRequired,
   }
 
   isActive = () => {
@@ -41,7 +35,6 @@ class NakedNavItem extends Component {
     }
     return (
       <ListItem
-        onClick={this.handleClick}
         button
       >
         <ListItemIcon>

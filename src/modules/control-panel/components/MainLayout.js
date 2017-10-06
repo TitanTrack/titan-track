@@ -14,7 +14,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import List from 'material-ui/List';
 import Nav from '../../utils/components/Nav';
-import navItems from '../consts/navItems';
+import { navItems } from '../consts';
 import Logo from '../assets/logo.png';
 
 const drawerWidth = 240;

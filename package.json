@@ -21,6 +21,8 @@
     "redux": "^3.7.2",
     "redux-firestore": "^0.0.4",
     "redux-logger": "^3.0.6",
+    "redux-observable": "^0.16.0",
+    "rxjs": "^5.4.3",
     "typeface-roboto": "^0.0.35"
   },
   "scripts": {

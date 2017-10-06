@@ -8,7 +8,7 @@ import VisibilityFilter from './VisibilityFilter';
 import {
   VISIBILITY_FILTERS,
   VISIBILITY_FILTER_FNS,
-} from '../consts/VISIBILITY_FILTERS';
+} from '../consts';
 
 const style = {
   paper: {

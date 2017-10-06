@@ -3,8 +3,7 @@ import DashboardIcon from 'material-ui-icons/Dashboard';
 import CheckIcon from 'material-ui-icons/Check';
 import SettingsIcon from 'material-ui-icons/Settings';
 
-
-const navItems = [{
+export const navItems = [{
   label: 'Dashboard',
   icon: <DashboardIcon />,
   path: '/',
@@ -20,5 +19,3 @@ const navItems = [{
   path: '/settings',
   activeRegex: '/settings',
 }];
-
-export default navItems;

@@ -9,3 +9,5 @@ export const VISIBILITY_FILTER_FNS = {
   [VISIBILITY_FILTERS.INCOMPLETE]: (todo) => !todo.completed,
   [VISIBILITY_FILTERS.COMPLETED]: (todo) => todo.completed,
 };
+
+export const TODOS_ROOT_PATH = '/todos';
