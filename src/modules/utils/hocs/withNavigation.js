@@ -5,8 +5,6 @@ export default compose(
   withRouter,
   withProps((ownProps) => ({
     go: ownProps.history.push,
+    isActive: (regex) => ownProps.match.path === regex,
   })),
-  withProps((ownProps) => {
-    console.log({ownProps});
-  })
 );

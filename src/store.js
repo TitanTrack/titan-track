@@ -14,6 +14,32 @@ import {
 } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import logger from 'redux-logger';
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+(() => {
+  const config = {
+    apiKey: "AIzaSyDY35I7SyXTo6jaLQ1RWql1PbwbXvk9_4c",
+    authDomain: "titan-track-98fcb.firebaseapp.com",
+    databaseURL: "https://titan-track-98fcb.firebaseio.com",
+    projectId: "titan-track-98fcb",
+    storageBucket: "titan-track-98fcb.appspot.com",
+    messagingSenderId: "961185076383"
+  };
+  firebase.initializeApp(config);
+  const db = firebase.firestore();
+  db.collection('todos').onSnapshot((snapshot) => {
+    snapshot.docChanges.forEach((change) => {
+      if (change.type === "added") {
+        console.log({
+          data: change.doc.data(),
+          change,
+          snapshot,
+        });
+      }
+    })
+  });
+})();
 
 // Add firebase to reducers
 const rootReducer = combineReducers({

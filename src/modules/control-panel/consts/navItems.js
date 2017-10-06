@@ -8,14 +8,17 @@ const navItems = [{
   label: 'Dashboard',
   icon: <DashboardIcon />,
   path: '/',
+  activeRegex: '/',
 }, {
   label: 'Todos',
   icon: <CheckIcon />,
   path: '/todos',
+  activeRegex: '/todos',
 }, {
   label: 'Settings',
   icon: <SettingsIcon />,
   path: '/settings',
+  activeRegex: '/settings',
 }];
 
 export default navItems;

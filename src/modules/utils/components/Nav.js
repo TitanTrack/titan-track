@@ -25,14 +25,25 @@ class NakedNavItem extends Component {
     go(path);
   }
 
+  isActive = () => {
+    const { activeRegex } = this.props;
+    return this.props.isActive(activeRegex);
+  }
+
   render () {
     const {
       label,
       icon,
       activeRegex,
     } = this.props;
+    if (this.isActive()) {
+      console.log('Is Active: ', label);
+    }
     return (
-      <ListItem button onClick={this.handleClick}>
+      <ListItem
+        onClick={this.handleClick}
+        button
+      >
         <ListItemIcon>
           {icon}
         </ListItemIcon>

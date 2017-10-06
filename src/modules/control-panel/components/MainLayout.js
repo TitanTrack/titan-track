@@ -15,6 +15,7 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import List from 'material-ui/List';
 import Nav from '../../utils/components/Nav';
 import navItems from '../consts/navItems';
+import Logo from '../assets/logo.png';
 
 const drawerWidth = 240;
 
@@ -139,6 +140,15 @@ class MainLayout extends React.Component {
           >
             <div className={classes.drawerInner}>
               <div className={classes.drawerHeader}>
+                <img
+                  src={Logo}
+                  style={{
+                    height: '50px',
+                  }}
+                />
+                <Typography type="title" noWrap>
+                  Titan Track
+                </Typography>
                 <IconButton onClick={this.handleDrawerClose}>
                   <ChevronLeftIcon />
                 </IconButton>
