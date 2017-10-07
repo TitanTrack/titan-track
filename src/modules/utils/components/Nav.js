@@ -9,6 +9,7 @@ import {
   func,
 } from 'prop-types';
 import withNavigation from '../hocs/withNavigation';
+import { Link } from 'react-router-dom';
 
 class NakedNavItem extends Component {
   static propTypes = {
@@ -29,6 +30,7 @@ class NakedNavItem extends Component {
       label,
       icon,
       activeRegex,
+      path,
     } = this.props;
     if (this.isActive()) {
       console.log('Is Active: ', label);
@@ -36,6 +38,8 @@ class NakedNavItem extends Component {
     return (
       <ListItem
         button
+        component={Link}
+        to={path}
       >
         <ListItemIcon>
           {icon}

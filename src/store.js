@@ -57,7 +57,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [
   routerMiddleware(history),
   createEpicMiddleware(rootEpic),
-  logger,
+  // logger,
 ];
 
 export const store = createStore(
