@@ -9,4 +9,4 @@ const rootEpic = (action$) => {
     .ignoreElements();
 }
 
-export default rootEpic;
+export default combineEpics(rootEpic);

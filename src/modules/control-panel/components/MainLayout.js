@@ -1,5 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -140,15 +138,6 @@ class MainLayout extends React.Component {
           >
             <div className={classes.drawerInner}>
               <div className={classes.drawerHeader}>
-                <img
-                  src={Logo}
-                  style={{
-                    height: '50px',
-                  }}
-                />
-                <Typography type="title" noWrap>
-                  Titan Track
-                </Typography>
                 <IconButton onClick={this.handleDrawerClose}>
                   <ChevronLeftIcon />
                 </IconButton>

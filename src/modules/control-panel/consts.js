@@ -4,6 +4,11 @@ import CheckIcon from 'material-ui-icons/Check';
 import SettingsIcon from 'material-ui-icons/Settings';
 
 export const navItems = [{
+  specialNavItem: 'profile',
+},{
+  specialNavItem: 'divider',
+},
+{
   label: 'Dashboard',
   icon: <DashboardIcon />,
   path: '/',

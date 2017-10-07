@@ -10,49 +10,10 @@ import {
 } from 'prop-types';
 import withNavigation from '../hocs/withNavigation';
 import { Link } from 'react-router-dom';
-
-class NakedNavItem extends Component {
-  static propTypes = {
-    label: string.isRequired,
-    icon: object.isRequired,
-    activeRegex: string.isRequired,
-    path: string.isRequired,
-    isActive: func.isRequired,
-  }
-
-  isActive = () => {
-    const { activeRegex } = this.props;
-    return this.props.isActive(activeRegex);
-  }
-
-  render () {
-    const {
-      label,
-      icon,
-      activeRegex,
-      path,
-    } = this.props;
-    if (this.isActive()) {
-      console.log('Is Active: ', label);
-    }
-    return (
-      <ListItem
-        button
-        component={Link}
-        to={path}
-      >
-        <ListItemIcon>
-          {icon}
-        </ListItemIcon>
-        <ListItemText
-          primary={label}
-        />
-      </ListItem>
-    )
-  }
-}
-
-const NavItem = withNavigation(NakedNavItem);
+import Avatar from 'material-ui/Avatar';
+import ProfileNavItem from './ProfileNavItem';
+import NavItem from './NavItem';
+import Divider from 'material-ui/Divider';
 
 class Nav extends Component {
   static propTypes = {
@@ -67,6 +28,12 @@ class Nav extends Component {
     return (
       <List>
         {navItems.map((navItem, index) => (
+          navItem.specialNavItem === 'profile' ?
+          <ProfileNavItem key={`profileNavItem${index}`} />
+          :
+          navItem.specialNavItem === 'divider' ?
+          <Divider key={`divider${index}`} />
+          :
           <NavItem
             key={`${navItem.label}-${index}`}
             label={navItem.label}
