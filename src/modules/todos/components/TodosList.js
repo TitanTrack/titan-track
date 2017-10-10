@@ -5,6 +5,7 @@ import TodoItem from './TodoItem/index.js';
 import List from 'material-ui/List';
 import TodoItemForm from './TodoItem/TodoItemForm';
 import VisibilityFilter from './VisibilityFilter';
+import withTodosList from '../hocs/withTodosList';
 import {
   VISIBILITY_FILTERS,
   VISIBILITY_FILTER_FNS,
@@ -12,7 +13,6 @@ import {
 
 const style = {
   paper: {
-    padding: '5px',
     display: 'block',
   },
 };
@@ -107,4 +107,4 @@ class TodosList extends Component {
   }
 }
 
-export default TodosList;
+export default withTodosList(TodosList);

@@ -4887,7 +4887,7 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.17.4, lodash-es@^4.2.0, lodash-es@^4.2.1:
+lodash-es@^4.2.0, lodash-es@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
@@ -6703,12 +6703,11 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-firestore@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/redux-firestore/-/redux-firestore-0.0.4.tgz#ba0228febb4851dca16f76d1602e4d8842e05ceb"
+redux-firestore@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/redux-firestore/-/redux-firestore-0.0.7.tgz#1436246e76c327949b158f70b9878c27881ceee2"
   dependencies:
     lodash "^4.17.4"
-    lodash-es "^4.17.4"
 
 redux-logger@^3.0.6:
   version "3.0.6"
