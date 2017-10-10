@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import InboxIcon from 'material-ui-icons/Inbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
+import List from 'material-ui/List';
 import {
   array,
-  string,
-  object,
-  func,
 } from 'prop-types';
 import withNavigation from '../hocs/withNavigation';
-import { Link } from 'react-router-dom';
-import Avatar from 'material-ui/Avatar';
 import ProfileNavItem from './ProfileNavItem';
 import NavItem from './NavItem';
 import Divider from 'material-ui/Divider';
@@ -22,7 +15,6 @@ class Nav extends Component {
 
   render () {
     const {
-      classes,
       navItems,
     } = this.props;
     return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import { func, string } from 'prop-types';
 import AppBar from 'material-ui/AppBar';
+import { withStyles } from 'material-ui/styles';
 
 
 import { VISIBILITY_FILTERS } from '../consts';
@@ -42,4 +43,4 @@ class VisibilityFilter extends Component {
   }
 }
 
-export default VisibilityFilter;
+export default withStyles(styles)(VisibilityFilter);

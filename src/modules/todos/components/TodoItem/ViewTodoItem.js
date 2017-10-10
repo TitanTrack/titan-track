@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { MenuItem } from 'material-ui/Menu';
 import {
   ListItem,
   ListItemText,

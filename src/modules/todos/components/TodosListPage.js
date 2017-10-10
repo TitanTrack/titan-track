@@ -8,7 +8,7 @@ class TodosListPage extends Component {
     return (
       <div>
         <TodosListsMenu />
-        <TodosList />
+        <TodosList todos={todos} />
       </div>
     );
   }

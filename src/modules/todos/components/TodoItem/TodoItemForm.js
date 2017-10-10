@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
-import Formsy from 'formsy-react';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 
@@ -57,7 +56,6 @@ class TodoItemForm extends Component {
     const {
       placeholder,
       label,
-      defaultValue,
       onCancel,
     } = this.props;
 

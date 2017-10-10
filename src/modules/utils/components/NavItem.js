@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import withNavigation from '../hocs/withNavigation';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 import {
-  array,
   string,
   object,
   func,
@@ -27,7 +26,6 @@ class NavItem extends Component {
     const {
       label,
       icon,
-      activeRegex,
       path,
     } = this.props;
     if (this.isActive()) {

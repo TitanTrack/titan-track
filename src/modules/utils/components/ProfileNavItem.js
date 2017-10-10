@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 
 const styles = {
@@ -13,7 +12,6 @@ const styles = {
 
 class ProfileNavItem extends Component {
   render () {
-    const { classes } = this.props;
     return (
       <ListItem dense>
         <Avatar

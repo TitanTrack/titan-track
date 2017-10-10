@@ -3,9 +3,6 @@ import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-
-const ITEM_HEIGHT = 48;
-
 class IconMenu extends React.Component {
   state = {
     anchorEl: null,

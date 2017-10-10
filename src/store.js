@@ -17,7 +17,6 @@ import {
   routerReducer,
 } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-import logger from 'redux-logger';
 import firebase from 'firebase';
 
 import { createEpicMiddleware } from 'redux-observable';
@@ -49,7 +48,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [
   routerMiddleware(history),
   createEpicMiddleware(rootEpic),
-  // logger,
 ];
 
 export const store = createStore(

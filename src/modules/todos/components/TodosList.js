@@ -71,7 +71,7 @@ class TodosList extends Component {
   }
 
   render () {
-    const { todos, onTodoAdd } = this.props;
+    const { todos } = this.props;
     const filteredTodos = todos.filter(
       VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
     );
