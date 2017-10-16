@@ -11,6 +11,8 @@ import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import Nav from '../../utils/components/Nav';
 import { navItems } from '../consts';
+import withControlPanelNav from '../hocs/withControlPanelNav';
+import { compose } from 'recompose';
 
 const drawerWidth = 240;
 
@@ -93,31 +95,24 @@ const styles = theme => ({
 });
 
 class MainLayout extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
-
   render() {
     const classes = this.props.classes;
-    const { children } = this.props;
+    const {
+      children,
+      isDrawerOpen,
+      handleDrawerOpen,
+      handleDrawerClose,
+    } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-            <Toolbar disableGutters={!this.state.open}>
+          <AppBar className={classNames(classes.appBar, isDrawerOpen && classes.appBarShift)}>
+            <Toolbar disableGutters={!isDrawerOpen}>
               <IconButton
                 color="contrast"
                 aria-label="open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, this.state.open && classes.hide)}
+                onClick={handleDrawerOpen}
+                className={classNames(classes.menuButton, isDrawerOpen && classes.hide)}
               >
                 <MenuIcon />
               </IconButton>
@@ -129,13 +124,13 @@ class MainLayout extends React.Component {
           <Drawer
             type="permanent"
             classes={{
-              paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+              paper: classNames(classes.drawerPaper, !isDrawerOpen && classes.drawerPaperClose),
             }}
-            open={this.state.open}
+            open={isDrawerOpen}
           >
             <div className={classes.drawerInner}>
               <div className={classes.drawerHeader}>
-                <IconButton onClick={this.handleDrawerClose}>
+                <IconButton onClick={handleDrawerClose}>
                   <ChevronLeftIcon />
                 </IconButton>
               </div>
@@ -152,4 +147,7 @@ class MainLayout extends React.Component {
   }
 }
 
-export default withStyles(styles)(MainLayout);
+export default compose(
+  withStyles(styles),
+  withControlPanelNav,
+)(MainLayout);

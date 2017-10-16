@@ -18,6 +18,8 @@ import {
 } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import firebase from 'firebase';
+import { reducer as controlPanelNav } from './modules/control-panel/reducers/controlPanelNavReducer';
+import thunk from 'redux-thunk'
 
 import { createEpicMiddleware } from 'redux-observable';
 import rootEpic from './rootEpic';
@@ -32,11 +34,16 @@ const config = {
 const rfConfig = { userProfile: 'users' };
 const firebaseApp = firebase.initializeApp(config);
 
+const localUI = combineReducers({
+  controlPanelNav,
+});
+
 // Add firebase to reducers
 const rootReducer = combineReducers({
   firebase: firebaseStateReducer,
   firestore: firestoreReducer,
   routing: routerReducer,
+  localUI,
 });
 
 const initialState = {};
@@ -48,6 +55,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [
   routerMiddleware(history),
   createEpicMiddleware(rootEpic),
+  thunk,
 ];
 
 export const store = createStore(
