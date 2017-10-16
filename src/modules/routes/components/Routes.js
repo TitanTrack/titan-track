@@ -8,6 +8,7 @@ import DashboardPage from '../../dashboard/components/DashboardPage';
 import TodosMainPage from '../../todos/components/TodosMainPage';
 import TodosListPage from '../../todos/components/TodosListPage';
 import SettingsPage from '../../settings/components/SettingsPage';
+import JournalsPage from '../../journals/components/JournalsPage';
 
 class Routes extends Component {
   render () {
@@ -27,6 +28,11 @@ class Routes extends Component {
           <Route
             path="/todos/:tid"
             component={() => (<ControlPanelMainLayout><TodosListPage /></ControlPanelMainLayout>)}
+          />
+          <Route
+            exact
+            path="/journals"
+            component={() => (<ControlPanelMainLayout><JournalsPage /></ControlPanelMainLayout>)}
           />
           <Route
             exact
