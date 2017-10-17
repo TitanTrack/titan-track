@@ -10,17 +10,21 @@ import {
   getTodoItemUrl,
 } from '../lib';
 import firebase from 'firebase';
+import { objectToArr } from '../../utils/lib';
 
 export default compose(
   firestoreConnect((ownProps) => ([{
     path: getTodoItemsUrl(ownProps.todosListId),
   }])),
   connect(({ firestore }, ownProps) => {
-    const orderedTodos = firestore.ordered.todos;
-    const curTodo = orderedTodos ? orderedTodos[ownProps.todosListId] : {};
-    const curTodoItems = curTodo ? curTodo.todo_items : [];
+    const unorderedTodos = firestore.data.todos;
+    const curTodo = unorderedTodos ? unorderedTodos[ownProps.todosListId] : {
+      todo_items: [],
+      title: '',
+    };
     return {
-      todoItems: curTodoItems,
+      title: curTodo.title,
+      todoItems: objectToArr(curTodo.todo_items),
     };
   }),
   withProps((ownProps) => {

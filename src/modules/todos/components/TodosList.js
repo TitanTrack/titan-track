@@ -6,6 +6,9 @@ import List from 'material-ui/List';
 import TodoItemForm from './TodoItem/TodoItemForm';
 import VisibilityFilter from './VisibilityFilter';
 import withTodosList from '../hocs/withTodosList';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+
 import {
   VISIBILITY_FILTERS,
   VISIBILITY_FILTER_FNS,
@@ -19,6 +22,7 @@ const style = {
 
 class TodosList extends Component {
   static propTypes = {
+    title: string.isRequired,
     todosListId: string.isRequired,
     todoItems: array.isRequired,
     onTodoAdd: func.isRequired,
@@ -72,7 +76,10 @@ class TodosList extends Component {
   }
 
   render () {
-    const { todoItems, todosListId } = this.props;
+    const {
+      todoItems,
+      title,
+    } = this.props;
     const filteredTodoItems = todoItems.filter(
       VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
     );
@@ -93,10 +100,15 @@ class TodosList extends Component {
     );
     return (
       <Paper style={style.paper}>
-        <VisibilityFilter
-          visibilityFilter={this.state.visibilityFilter}
-          onSetVisibilityFilter={this.handleSetVisibilityFilter}
-        />
+        <Toolbar>
+          <Typography type="title" color="inherit">
+            {title}
+          </Typography>
+          <VisibilityFilter
+            visibilityFilter={this.state.visibilityFilter}
+            onSetVisibilityFilter={this.handleSetVisibilityFilter}
+          />
+        </Toolbar>
         <TodoItemForm
           onSubmit={this.handleTodoAdd}
           placeholder="Write something to add to your list"
