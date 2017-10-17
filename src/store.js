@@ -39,12 +39,7 @@ const localUI = combineReducers({
 });
 
 // Add firebase to reducers
-const rootReducer = combineReducers({
-  firebase: firebaseStateReducer,
-  firestore: firestoreReducer,
-  routing: routerReducer,
-  localUI,
-});
+
 
 const initialState = {};
 
@@ -58,12 +53,17 @@ const middleware = [
   thunk,
 ];
 
+const rootReducer = combineReducers({
+  firebase: firebaseStateReducer,
+  firestore: firestoreReducer,
+});
+
 export const store = createStore(
   rootReducer,
   initialState,
   composeEnhancers(
     applyMiddleware(...middleware),
+    reactReduxFirebase(config, rfConfig),
     reduxFirestore(firebaseApp, rfConfig),
-    reactReduxFirebase(config, rfConfig)
   )
 );
