@@ -127,11 +127,11 @@ const data = [{
   frequency: 'daily',
   inputType: 'short',
 }, {
-  name: 'Watched TV',
+  name: 'Worked Out',
   frequency: 'weekly',
   inputType: 'paragraph',
 }, {
-  name: 'Watched TV',
+  name: 'Calories Eaten',
   frequency: 'weekly',
   inputType: 'numeric',
 }, {
