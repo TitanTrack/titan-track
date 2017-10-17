@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import TodosList from './TodosList';
 import TodosListsMenu from './TodosListsMenu';
+import withTodosListPage from '../hocs/withTodosListPage';
 
 class TodosListPage extends Component {
   render () {
-    const { todos } = this.props;
+    const { todosListId } = this.props;
     return (
       <div>
         <TodosListsMenu />
-        <TodosList todos={todos} />
+        <TodosList todosListId={todosListId} />
       </div>
     );
   }
 }
 
-export default TodosListPage;
+export default withTodosListPage(TodosListPage);

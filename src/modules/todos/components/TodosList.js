@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { array, func } from 'prop-types';
+import { array, func, string } from 'prop-types';
 import Paper from 'material-ui/Paper';
 import TodoItem from './TodoItem/index.js';
 import List from 'material-ui/List';
@@ -19,7 +19,8 @@ const style = {
 
 class TodosList extends Component {
   static propTypes = {
-    todos: array.isRequired,
+    todosListId: string.isRequired,
+    todoItems: array.isRequired,
     onTodoAdd: func.isRequired,
     onTodoDelete: func.isRequired,
     onTodoToggle: func.isRequired,
@@ -27,7 +28,7 @@ class TodosList extends Component {
   }
 
   static defaultProps = {
-    todos: [],
+    todoItems: [],
   }
 
   state = {
@@ -40,25 +41,25 @@ class TodosList extends Component {
     });
   }
 
-  generateOnTodoDelete = (todoKey) => () => {
+  generateOnTodoDelete = (todoId) => () => {
     const { onTodoDelete } = this.props;
     return onTodoDelete({
-      todoKey,
+      todoId,
     });
   }
 
-  generateOnTodoToggle = (todoKey) => (completed) => {
+  generateOnTodoToggle = (todoId) => (completed) => {
     const { onTodoToggle } = this.props;
     return onTodoToggle({
-      todoKey,
+      todoId,
       completed,
     });
   }
 
-  generateOnTodoEdit = (todoKey) => (todoTitle) => {
+  generateOnTodoEdit = (todoId) => (todoTitle) => {
     const { onTodoEdit } = this.props;
     return onTodoEdit({
-      todoKey,
+      todoId,
       todoTitle,
     });
   }
@@ -71,16 +72,16 @@ class TodosList extends Component {
   }
 
   render () {
-    const { todos } = this.props;
-    const filteredTodos = todos.filter(
+    const { todoItems, todosListId } = this.props;
+    const filteredTodoItems = todoItems.filter(
       VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
     );
     const TodoItems = () => (
       <List>
-        {filteredTodos.map((todo) => (
+        {filteredTodoItems.map((todo) => (
           <TodoItem
-            key={todo.key}
-            todoKey={todo.key}
+            key={todo.id}
+            todoId={todo.key}
             title={todo.title}
             completed={todo.completed}
             onTodoToggle={this.generateOnTodoToggle(todo.key)}

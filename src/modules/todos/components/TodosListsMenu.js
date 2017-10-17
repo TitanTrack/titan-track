@@ -21,7 +21,7 @@ class TodosListsMenu extends Component {
             <ListItem
               key={`${todosList.key}-${index}`}
               component={Link}
-              to={todosList.url}
+              to={todosList.rootUrl}
               button
             >
               <ListItemText
