@@ -26,16 +26,18 @@ class VisibilityFilter extends Component {
   }
 
   render () {
-    const { visibilityFilter } = this.props;
+    const { visibilityFilter, className } = this.props;
     return (
-      <Tabs
-        value={visibilityFilter}
-        onChange={this.handleChange}
-      >
-        <Tab label="All" value={VISIBILITY_FILTERS.ALL} />
-        <Tab label="Incomplete" value={VISIBILITY_FILTERS.INCOMPLETE} />
-        <Tab label="Completed" value={VISIBILITY_FILTERS.COMPLETED} />
-      </Tabs>
+      <div className={className}>
+        <Tabs
+          value={visibilityFilter}
+          onChange={this.handleChange}
+        >
+          <Tab label="All" value={VISIBILITY_FILTERS.ALL} />
+          <Tab label="Incomplete" value={VISIBILITY_FILTERS.INCOMPLETE} />
+          <Tab label="Completed" value={VISIBILITY_FILTERS.COMPLETED} />
+        </Tabs>
+      </div>
     );
   }
 }

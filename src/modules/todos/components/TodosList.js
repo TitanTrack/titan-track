@@ -8,16 +8,23 @@ import VisibilityFilter from './VisibilityFilter';
 import withTodosList from '../hocs/withTodosList';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
+import { compose } from 'recompose';
 
 import {
   VISIBILITY_FILTERS,
   VISIBILITY_FILTER_FNS,
 } from '../consts';
 
-const style = {
+const styles = {
   paper: {
     display: 'block',
   },
+  visibilityFilter: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 0,
+  }
 };
 
 class TodosList extends Component {
@@ -79,6 +86,7 @@ class TodosList extends Component {
     const {
       todoItems,
       title,
+      classes,
     } = this.props;
     const filteredTodoItems = todoItems.filter(
       VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
@@ -99,12 +107,13 @@ class TodosList extends Component {
       </List>
     );
     return (
-      <Paper style={style.paper}>
+      <Paper className={classes.paper}>
         <Toolbar>
           <Typography type="title" color="inherit">
             {title}
           </Typography>
           <VisibilityFilter
+            className={classes.visibilityFilter}
             visibilityFilter={this.state.visibilityFilter}
             onSetVisibilityFilter={this.handleSetVisibilityFilter}
           />
@@ -120,4 +129,7 @@ class TodosList extends Component {
   }
 }
 
-export default withTodosList(TodosList);
+export default compose(
+  withStyles(styles),
+  withTodosList
+)(TodosList);

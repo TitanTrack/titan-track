@@ -10,7 +10,10 @@ import {
   getTodoItemUrl,
 } from '../lib';
 import firebase from 'firebase';
-import { objectToArr } from '../../utils/lib';
+import {
+  objectToArr,
+  generateAlphanumericSort,
+} from '../../utils/lib';
 
 export default compose(
   firestoreConnect((ownProps) => ([{
@@ -19,12 +22,17 @@ export default compose(
   connect(({ firestore }, ownProps) => {
     const unorderedTodos = firestore.data.todos;
     const curTodo = unorderedTodos ? unorderedTodos[ownProps.todosListId] : {
-      todo_items: [],
+      todo_items: {},
       title: '',
     };
     return {
       title: curTodo.title,
-      todoItems: objectToArr(curTodo.todo_items),
+      todoItems: objectToArr(
+        curTodo.todo_items,
+        generateAlphanumericSort({
+          transformItemFn: (item) => item.title,
+        })
+      ),
     };
   }),
   withProps((ownProps) => {
@@ -35,6 +43,7 @@ export default compose(
       todoId,
     });
     const db = firebase.firestore();
+    const now = Date.now();
 
     return {
       onTodoAdd: ({
@@ -43,6 +52,8 @@ export default compose(
         return db.collection(todoItemsUrl).add({
           title,
           completed: false,
+          createdAt: now,
+          updatedAt: now,
         });
       },
 
@@ -60,6 +71,7 @@ export default compose(
         const todoItemUrl = getCurTodoItemUrl(todoId);
         return db.doc(todoItemUrl).update({
           completed,
+          updatedAt: now,
         });
       },
 
@@ -70,6 +82,7 @@ export default compose(
         const todoItemUrl = getCurTodoItemUrl(todoId);
         return db.doc(todoItemUrl).update({
           title,
+          updatedAt: now,
         });
       },
     };
