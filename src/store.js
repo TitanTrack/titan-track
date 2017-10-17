@@ -7,22 +7,22 @@ import {
 import {
   reactReduxFirebase,
   firebaseStateReducer,
-} from 'react-redux-firebase';
-import {
   firestoreReducer,
-  reduxFirestore,
-} from 'redux-firestore';
+} from 'react-redux-firebase';
+import * as kerem from 'react-redux-firebase';
 import {
   routerMiddleware,
   routerReducer,
 } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import firebase from 'firebase';
+import 'firebase/firestore';
 import { reducer as controlPanelNav } from './modules/control-panel/reducers/controlPanelNavReducer';
 import thunk from 'redux-thunk'
 
 import { createEpicMiddleware } from 'redux-observable';
 import rootEpic from './rootEpic';
+
 const config = {
   apiKey: "AIzaSyDY35I7SyXTo6jaLQ1RWql1PbwbXvk9_4c",
   authDomain: "titan-track-98fcb.firebaseapp.com",
@@ -32,18 +32,11 @@ const config = {
   messagingSenderId: "961185076383"
 };
 const rfConfig = { userProfile: 'users' };
-const firebaseApp = firebase.initializeApp(config);
+firebase.initializeApp(config);
+firebase.firestore();
 
 const localUI = combineReducers({
   controlPanelNav,
-});
-
-// Add firebase to reducers
-const rootReducer = combineReducers({
-  firebase: firebaseStateReducer,
-  firestore: firestoreReducer,
-  routing: routerReducer,
-  localUI,
 });
 
 const initialState = {};
@@ -58,12 +51,18 @@ const middleware = [
   thunk,
 ];
 
+const rootReducer = combineReducers({
+  firebase: firebaseStateReducer,
+  firestore: firestoreReducer,
+  routing: routerReducer,
+  localUI,
+});
+
 export const store = createStore(
   rootReducer,
   initialState,
   composeEnhancers(
     applyMiddleware(...middleware),
-    reduxFirestore(firebaseApp, rfConfig),
-    reactReduxFirebase(config, rfConfig)
+    reactReduxFirebase(firebase, rfConfig)
   )
 );

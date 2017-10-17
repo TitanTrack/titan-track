@@ -15,7 +15,9 @@ class TodosListsMenu extends Component {
     const {
       todosLists = [],
       getTodosListUrl,
+      kerem,
     } = this.props;
+    console.log({kerem})
     return (
       <Paper>
         <List>
