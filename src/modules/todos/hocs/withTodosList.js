@@ -5,7 +5,11 @@ import {
 import path from 'path';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
-import { getTodoItemsUrl } from '../lib';
+import {
+  getTodoItemsUrl,
+  getTodoItemUrl,
+} from '../lib';
+import firebase from 'firebase';
 
 export default compose(
   firestoreConnect((ownProps) => ([{
@@ -15,28 +19,55 @@ export default compose(
     const orderedTodos = firestore.ordered.todos;
     const curTodo = orderedTodos ? orderedTodos[ownProps.todosListId] : {};
     const curTodoItems = curTodo ? curTodo.todo_items : [];
-
-    console.log({
-      orderedTodos,
-      curTodo,
-      curTodoItems,
-    })
     return {
       todoItems: curTodoItems,
     };
   }),
-  withProps((ownProps) => ({
-    onTodoAdd: () => {
+  withProps((ownProps) => {
+    const { todosListId } = ownProps;
+    const todoItemsUrl = getTodoItemsUrl(todosListId);
+    const getCurTodoItemUrl = (todoId) => getTodoItemUrl({
+      listId: todosListId,
+      todoId,
+    });
+    const db = firebase.firestore();
 
-    },
-    onTodoDelete: () => {
+    return {
+      onTodoAdd: ({
+        title,
+      }) => {
+        return db.collection(todoItemsUrl).add({
+          title,
+          completed: false,
+        });
+      },
 
-    },
-    onTodoToggle: () => {
+      onTodoDelete: ({
+        todoId,
+      }) => {
+         const todoItemUrl = getCurTodoItemUrl(todoId);
+         return db.doc(todoItemUrl).delete();
+      },
 
-    },
-    onTodoEdit: () => {
+      onTodoToggle: ({
+        todoId,
+        completed,
+      }) => {
+        const todoItemUrl = getCurTodoItemUrl(todoId);
+        return db.doc(todoItemUrl).update({
+          completed,
+        });
+      },
 
-    },
-  }))
+      onTodoEdit: ({
+        todoId,
+        title,
+      }) => {
+        const todoItemUrl = getCurTodoItemUrl(todoId);
+        return db.doc(todoItemUrl).update({
+          title,
+        });
+      },
+    };
+  })
 );

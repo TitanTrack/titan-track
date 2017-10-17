@@ -56,18 +56,18 @@ class TodosList extends Component {
     });
   }
 
-  generateOnTodoEdit = (todoId) => (todoTitle) => {
+  generateOnTodoEdit = (todoId) => (title) => {
     const { onTodoEdit } = this.props;
     return onTodoEdit({
       todoId,
-      todoTitle,
+      title,
     });
   }
 
-  handleTodoAdd = (todoTitle) => {
+  handleTodoAdd = (title) => {
     const { onTodoAdd } = this.props;
     return onTodoAdd({
-      todoTitle,
+      title,
     });
   }
 
@@ -81,12 +81,12 @@ class TodosList extends Component {
         {filteredTodoItems.map((todo) => (
           <TodoItem
             key={todo.id}
-            todoId={todo.key}
+            todoId={todo.id}
             title={todo.title}
             completed={todo.completed}
-            onTodoToggle={this.generateOnTodoToggle(todo.key)}
-            onTodoDelete={this.generateOnTodoDelete(todo.key)}
-            onTodoEdit={this.generateOnTodoEdit(todo.key)}
+            onTodoToggle={this.generateOnTodoToggle(todo.id)}
+            onTodoDelete={this.generateOnTodoDelete(todo.id)}
+            onTodoEdit={this.generateOnTodoEdit(todo.id)}
           />
         ))}
       </List>

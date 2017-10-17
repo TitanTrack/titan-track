@@ -13,4 +13,14 @@ export const getTodoItemsUrl = (listId) => (
     getTodosListUrl(listId),
     'todo_items'
   )
-)
+);
+
+export const getTodoItemUrl = ({
+  listId,
+  todoId,
+}) => (
+  path.join(
+    getTodoItemsUrl(listId),
+    todoId
+  )
+);
