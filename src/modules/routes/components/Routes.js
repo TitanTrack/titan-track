@@ -9,6 +9,7 @@ import TodosMainPage from '../../todos/components/TodosMainPage';
 import TodosListPage from '../../todos/components/TodosListPage';
 import SettingsPage from '../../settings/components/SettingsPage';
 import JournalsPage from '../../journals/components/JournalsPage';
+import TrackersPage from '../../trackers/components/TrackersPage';
 
 class Routes extends Component {
   render () {
@@ -36,6 +37,11 @@ class Routes extends Component {
           />
           <Route
             exact
+            path="/trackers"
+            component={() => (<ControlPanelMainLayout><TrackersPage /></ControlPanelMainLayout>)}
+          />
+          <Route
+            exact
             path="/settings"
             component={() => (<ControlPanelMainLayout><SettingsPage /></ControlPanelMainLayout>)}
           />
@@ -44,6 +50,7 @@ class Routes extends Component {
             path="/signin"
             component={() => (<ControlPanelMainLayout><SigninPage /></ControlPanelMainLayout>)}
           />
+
         </Switch>
       </Router>
     );
