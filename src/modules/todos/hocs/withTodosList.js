@@ -11,7 +11,7 @@ import {
 } from '../lib';
 import firebase from 'firebase';
 import {
-  objectToArr,
+  objToArr,
   generateAlphanumericSort,
 } from '../../utils/lib';
 
@@ -27,10 +27,10 @@ export default compose(
     };
     return {
       title: curTodo.title,
-      todoItems: objectToArr(
+      todoItems: objToArr(
         curTodo.todo_items,
         generateAlphanumericSort({
-          transformItemFn: (item) => item.title,
+          mapperFn: (item) => item.title,
         })
       ),
     };

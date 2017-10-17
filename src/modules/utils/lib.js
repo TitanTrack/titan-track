@@ -1,4 +1,4 @@
-export const objectToArr = (data, sorterFn) => {
+export const objToArr = (data, sorterFn) => {
   const fixedData = data || {};
   const result = Object.keys(fixedData).map((curKey) => {
     const curElem = fixedData[curKey] || {};
@@ -11,15 +11,23 @@ export const objectToArr = (data, sorterFn) => {
   return result;
 }
 
-export const generateAlphanumericSort = ({
-  transformItemFn,
+export const generateSort = (sorterFn) => ({
+  mapperFn,
   isDescending,
 }) => (a, b) => {
-  const aTransformed = transformItemFn(a);
-  const bTransformed = transformItemFn(b);
-  const aLower = aTransformed.toLowerCase();
-  const bLower = bTransformed.toLowerCase();
   const coefficient = isDescending ? -1 : 1;
-  if (aLower < bLower) return -1 * coefficient;
-  if (aLower > bLower) return 1 * coefficient;
+  const aMapped = mapperFn(a);
+  const bMapped = mapperFn(b);
+  const rawResult = sorterFn(aMapped, bMapped);
+  return rawResult * coefficient;
 }
+
+const alphaNumericSort = (a, b) => {
+  const aLower = a.toLowerCase();
+  const bLower = b.toLowerCase();
+  if (aLower < bLower) return -1;
+  if (aLower > bLower) return 1;
+  return 0;
+};
+
+export const generateAlphanumericSort = generateSort(alphaNumericSort);
