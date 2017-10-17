@@ -8,16 +8,12 @@ import { Link } from 'react-router-dom';
 class TodosListsMenu extends Component {
   static propTypes = {
     todosLists: array.isRequired,
-    getTodosListUrl: func.isRequired,
   }
 
   render () {
     const {
       todosLists = [],
-      getTodosListUrl,
-      kerem,
     } = this.props;
-    console.log({kerem})
     return (
       <Paper>
         <List>
@@ -25,7 +21,7 @@ class TodosListsMenu extends Component {
             <ListItem
               key={`${todosList.key}-${index}`}
               component={Link}
-              to={getTodosListUrl(todosList.id)}
+              to={todosList.url}
               button
             >
               <ListItemText
