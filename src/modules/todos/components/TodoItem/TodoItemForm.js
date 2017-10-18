@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 
 const styles = {
   div: {
-    padding: '15px',
+    padding: '50px',
   },
   cancelButton: {
     marginLeft: '15px',
@@ -69,21 +69,6 @@ class TodoItemForm extends Component {
             onChange={this.handleChange}
             fullWidth
           />
-          <Button
-            type="submit"
-            raised
-          >
-            Submit
-          </Button>
-          {onCancel ?
-            <Button
-              raised
-              style={styles.cancelButton}
-              type="button"
-              onClick={onCancel}
-            >Cancel</Button> :
-            null
-          }
         </form>
       </div>
     );

@@ -96,7 +96,8 @@ export default compose(
       },
 
       onListDelete: () => {
-        console.log('DELETE!');
+        // TODO: need to add dynamic redirect: sometimes redirect, sometimes dont redirect
+        return db.doc(todosListUrl).delete();
       }
     };
   })
