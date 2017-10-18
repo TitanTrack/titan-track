@@ -22,7 +22,7 @@ export default compose(
       todosRaw,
       generateNumericSort({
         mapperFn: (item) => item.createdAt,
-        isDescending: false,
+        isDescending: true,
       })
     );
 

@@ -30,6 +30,7 @@ export default compose(
         curTodo.todo_items,
         generateNumericSort({
           mapperFn: (item) => item.createdAt,
+          isDescending: true,
         })
       ),
     };
