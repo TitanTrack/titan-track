@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import { compose } from 'recompose';
 import Divider from 'material-ui/Divider';
+import ListTitleForm from './ListTitleForm';
 
 const styles = {
   root: {
@@ -25,6 +26,7 @@ class TodosListsMenu extends Component {
     const {
       todosLists = [],
       classes,
+      onTodosListAdd,
     } = this.props;
     return (
       <Paper className={classes.root}>
@@ -35,6 +37,9 @@ class TodosListsMenu extends Component {
         </Toolbar>
         <List>
           <Divider />
+          <ListItem>
+            <ListTitleForm onSubmit={onTodosListAdd} />
+          </ListItem>
           {todosLists.map((todosList, index) => (
             <ListItem
               key={`${todosList.key}-${index}`}

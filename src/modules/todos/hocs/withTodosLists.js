@@ -6,10 +6,12 @@ import {
   getTodoItemsUrl,
 } from '../lib';
 import { TODOS_ROOT_PATH } from '../consts';
+import firebase from 'firebase';
 export default compose(
   firestoreConnect([TODOS_ROOT_PATH]),
   connect(({ firestore }) => {
     const todosRaw = firestore.ordered.todos ? firestore.ordered.todos : [];
+    const db = firebase.firestore();
     const todosLists = todosRaw.map((todoRaw) => ({
       ...todoRaw,
       rootUrl: getTodosListUrl(todoRaw.id),
@@ -17,6 +19,13 @@ export default compose(
     }));
     return {
       todosLists,
+      onTodosListAdd: (title) => {
+        return db.collection(TODOS_ROOT_PATH).add({
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+          title,
+        });
+      }
     };
   })
 );

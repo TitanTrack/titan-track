@@ -15,6 +15,8 @@ class ListTitleForm extends Component {
     this.state = this.getInitialState();
   }
 
+  static defaultProps = { title: '' };
+
   getInitialState = () => {
     return {
       title: this.props.title,
@@ -30,7 +32,9 @@ class ListTitleForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { onSubmit } = this.props;
-    return onSubmit(this.state.title);
+    const title = this.state.title;
+    this.setState(this.getInitialState());
+    return onSubmit(title);
   }
 
   render () {
