@@ -6,6 +6,7 @@ import path from 'path';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import {
+  getTodosListUrl,
   getTodoItemsUrl,
   getTodoItemUrl,
 } from '../lib';
@@ -38,6 +39,7 @@ export default compose(
   withProps((ownProps) => {
     const { todosListId } = ownProps;
     const todoItemsUrl = getTodoItemsUrl(todosListId);
+    const todosListUrl = getTodosListUrl(todosListId);
     const getCurTodoItemUrl = (todoId) => getTodoItemUrl({
       listId: todosListId,
       todoId,
@@ -85,6 +87,17 @@ export default compose(
           updatedAt: now,
         });
       },
+
+      onListTitleEdit: (title) => {
+        return db.doc(todosListUrl).update({
+          title,
+          updatedAt: now,
+        });
+      },
+
+      onListDelete: () => {
+        console.log('DELETE!');
+      }
     };
   })
 );

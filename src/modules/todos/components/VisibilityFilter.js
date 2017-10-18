@@ -8,9 +8,10 @@ import { VISIBILITY_FILTERS } from '../consts';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    marginTop: theme.spacing.unit * 3,
-    backgroundColor: theme.palette.background.paper,
+    display: 'block',
+    marginLeft: 'auto',
+    paddingLeft: 15,
+    marginRight: 0,
   },
 });
 
@@ -26,9 +27,9 @@ class VisibilityFilter extends Component {
   }
 
   render () {
-    const { visibilityFilter, className } = this.props;
+    const { visibilityFilter, classes } = this.props;
     return (
-      <div className={className}>
+      <div className={classes.root}>
         <Tabs
           value={visibilityFilter}
           onChange={this.handleChange}

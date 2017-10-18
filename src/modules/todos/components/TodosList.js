@@ -4,12 +4,11 @@ import Paper from 'material-ui/Paper';
 import TodoItem from './TodoItem/index.js';
 import List from 'material-ui/List';
 import TodoItemForm from './TodoItem/TodoItemForm';
-import VisibilityFilter from './VisibilityFilter';
 import withTodosList from '../hocs/withTodosList';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
+
 import { withStyles } from 'material-ui/styles';
 import { compose } from 'recompose';
+import Topbar from './Topbar';
 
 import {
   VISIBILITY_FILTERS,
@@ -20,11 +19,6 @@ const styles = {
   paper: {
     display: 'block',
   },
-  visibilityFilter: {
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 0,
-  }
 };
 
 class TodosList extends Component {
@@ -87,6 +81,7 @@ class TodosList extends Component {
       todoItems,
       title,
       classes,
+      todosListId,
     } = this.props;
     const filteredTodoItems = todoItems.filter(
       VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
@@ -108,16 +103,12 @@ class TodosList extends Component {
     );
     return (
       <Paper className={classes.paper}>
-        <Toolbar>
-          <Typography type="title" color="inherit">
-            {title}
-          </Typography>
-          <VisibilityFilter
-            className={classes.visibilityFilter}
-            visibilityFilter={this.state.visibilityFilter}
-            onSetVisibilityFilter={this.handleSetVisibilityFilter}
-          />
-        </Toolbar>
+        <Topbar
+          title={title}
+          visibilityFilter={this.state.visibilityFilter}
+          onSetVisibilityFilter={this.handleSetVisibilityFilter}
+          todosListId={todosListId}
+        />
         <TodoItemForm
           onSubmit={this.handleTodoAdd}
           placeholder="Write something to add to your list"
