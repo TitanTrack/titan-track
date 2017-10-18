@@ -11,7 +11,7 @@ import {
 } from '../lib';
 import {
   objToArr,
-  generateAlphanumericSort,
+  generateNumericSort,
 } from '../../utils/lib';
 
 export default compose(
@@ -28,8 +28,8 @@ export default compose(
       title: curTodo.title,
       todoItems: objToArr(
         curTodo.todo_items,
-        generateAlphanumericSort({
-          mapperFn: (item) => item.title,
+        generateNumericSort({
+          mapperFn: (item) => item.createdAt,
         })
       ),
     };

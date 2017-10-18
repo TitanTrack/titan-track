@@ -7,16 +7,31 @@ import {
 } from '../lib';
 import { TODOS_ROOT_PATH } from '../consts';
 import firebase from 'firebase';
+import {
+  objToArr,
+  generateNumericSort,
+} from '../../utils/lib';
+
 export default compose(
   firestoreConnect([TODOS_ROOT_PATH]),
   connect(({ firestore }) => {
-    const todosRaw = firestore.ordered.todos ? firestore.ordered.todos : [];
+    const todosRaw = firestore.data.todos ? firestore.data.todos : [];
     const db = firebase.firestore();
-    const todosLists = todosRaw.map((todoRaw) => ({
+
+    const todosListsUnmapped = objToArr(
+      todosRaw,
+      generateNumericSort({
+        mapperFn: (item) => item.createdAt,
+        isDescending: false,
+      })
+    );
+
+    const todosLists = todosListsUnmapped.map((todoRaw) => ({
       ...todoRaw,
       rootUrl: getTodosListUrl(todoRaw.id),
       itemsUrl: getTodoItemsUrl(todoRaw.id),
     }));
+
     return {
       todosLists,
       onTodosListAdd: (title) => {

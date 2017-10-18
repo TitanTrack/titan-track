@@ -22,12 +22,17 @@ export const generateSort = (sorterFn) => ({
   return rawResult * coefficient;
 }
 
+const numericSort = (a, b) => {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+}
+
 const alphaNumericSort = (a, b) => {
   const aLower = a.toLowerCase();
   const bLower = b.toLowerCase();
-  if (aLower < bLower) return -1;
-  if (aLower > bLower) return 1;
-  return 0;
+  return numericSort(aLower, bLower);
 };
 
+export const generateNumericSort = generateSort(numericSort);
 export const generateAlphanumericSort = generateSort(alphaNumericSort);
