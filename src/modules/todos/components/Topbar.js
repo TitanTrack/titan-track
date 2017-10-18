@@ -3,9 +3,9 @@ import { withStyles } from 'material-ui/styles';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import VisibilityFilter from './VisibilityFilter';
-import IconMenu from '../../utils/components/IconMenu';
 import withTodosList from '../hocs/withTodosList';
 import ListTitleForm from './ListTitleForm';
+import TodosListIconMenu from './TodosListIconMenu';
 
 class Topbar extends Component {
   state = {
@@ -37,6 +37,7 @@ class Topbar extends Component {
       onListDelete,
       title,
       onListTitleEdit,
+      todosListId,
     } = this.props;
 
     return (
@@ -55,14 +56,9 @@ class Topbar extends Component {
           visibilityFilter={visibilityFilter}
           onSetVisibilityFilter={onSetVisibilityFilter}
         />
-        <IconMenu
-          items={[{
-            onClick: this.handleOpenEdit,
-            label: "Edit",
-          }, {
-            onClick: onListDelete,
-            label: "Delete",
-          }]}
+        <TodosListIconMenu
+          todosListId={todosListId}
+          onOpenEdit={this.handleOpenEdit}
         />
       </Toolbar>
     );

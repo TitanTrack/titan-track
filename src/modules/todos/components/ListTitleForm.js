@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import withTodosList from '../hocs/withTodosList';
 import { withStyles } from 'material-ui/styles';
+import { string } from 'prop-types';
 
 const styles = {
   rootForm: {
@@ -13,6 +14,10 @@ class ListTitleForm extends Component {
   constructor (props) {
     super(props);
     this.state = this.getInitialState();
+  }
+
+  static propTypes = {
+    title: string.isRequired,
   }
 
   static defaultProps = { title: '' };

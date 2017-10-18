@@ -9,6 +9,7 @@ import withTodosList from '../hocs/withTodosList';
 import { withStyles } from 'material-ui/styles';
 import { compose } from 'recompose';
 import Topbar from './Topbar';
+import Divider from 'material-ui/Divider';
 
 import {
   VISIBILITY_FILTERS,
