@@ -9,7 +9,7 @@ import { MenuItem } from 'material-ui/Menu';
 import IconMenu from '../../utils/components/IconMenu';
 import TrackerTableRow from './TrackerTableRow';
 import TrackerTableFormRow from './TrackerTableFormRow';
-import withTrackers from '../hocs/withTrackers';
+import withTrackersList from '../hocs/withTrackersList';
 import { compose } from 'recompose';
 
 const styles = theme => ({
@@ -46,7 +46,7 @@ class TrackersTable extends Component {
               <TableCell>Tracker Name</TableCell>
               <TableCell numeric>Frequency</TableCell>
               <TableCell numeric>Input Type</TableCell>
-              <TableCell numeric>Action</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -73,5 +73,5 @@ class TrackersTable extends Component {
 
 export default compose(
   withStyles(styles),
-  withTrackers
+  withTrackersList
 )(TrackersTable);

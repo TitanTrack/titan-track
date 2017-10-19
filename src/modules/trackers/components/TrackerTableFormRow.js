@@ -54,7 +54,8 @@ class TrackerTableFormRow extends Component {
     });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { onSubmit } = this.props;
     const { name, frequency, inputType } = this.state;
     this.setState(this.getInitialState());
@@ -69,12 +70,14 @@ class TrackerTableFormRow extends Component {
     return (
       <TableRow>
         <TableCell>
-          <TextField
-            value={this.state.name}
-            fullWidth
-            placeholder="Tracker name"
-            onChange={this.handleNameChange}
-          />
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              value={this.state.name}
+              fullWidth
+              placeholder="Tracker name"
+              onChange={this.handleNameChange}
+            />
+          </form>
         </TableCell>
         <TableCell numeric>
           <Select
