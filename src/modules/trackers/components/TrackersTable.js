@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string, object, bool, array } from 'prop-types';
+import { string, object, func, array } from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow, TableFooter } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
@@ -27,10 +27,11 @@ class TrackersTable extends Component {
   static propTypes = {
     classes: object.isRequired,
     trackers: array.isRequired,
+    onTrackerAdd: func.isRequired,
   };
 
   render () {
-    const { classes, trackers } = this.props;
+    const { classes, trackers, onTrackerAdd } = this.props;
 
     return (
       <Paper className={classes.root}>
@@ -59,7 +60,10 @@ class TrackersTable extends Component {
             })}
           </TableBody>
           <TableFooter>
-            <TrackerTableFormRow isInsert/>
+            <TrackerTableFormRow
+              onSubmit={onTrackerAdd}
+              isInsert
+            />
           </TableFooter>
         </Table>
       </Paper>

@@ -54,9 +54,15 @@ class TrackerTableFormRow extends Component {
     });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = () => {
     const { onSubmit } = this.props;
-
+    const { name, frequency, inputType } = this.state;
+    this.setState(this.getInitialState());
+    return onSubmit({
+      name,
+      frequency,
+      inputType,
+    });
   }
 
   render () {
@@ -99,7 +105,7 @@ class TrackerTableFormRow extends Component {
           </Select>
         </TableCell>
         <TableCell numeric>
-          <Button raised color="primary">
+          <Button raised color="primary" onClick={this.handleSubmit}>
             Submit
           </Button>
         </TableCell>
