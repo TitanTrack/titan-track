@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 
 const styles = {
   div: {
-    padding: '50px',
+    width: '100%',
   },
   cancelButton: {
     marginLeft: '15px',

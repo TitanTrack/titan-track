@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { array, func, string } from 'prop-types';
 import Paper from 'material-ui/Paper';
 import TodoItem from './TodoItem/index.js';
-import List from 'material-ui/List';
+import List, { ListItem } from 'material-ui/List';
 import TodoItemForm from './TodoItem/TodoItemForm';
 import withTodosList from '../hocs/withTodosList';
 
@@ -89,6 +89,14 @@ class TodosList extends Component {
     );
     const TodoItems = () => (
       <List>
+        <Divider />
+        <ListItem dense>
+          <TodoItemForm
+            onSubmit={this.handleTodoAdd}
+            placeholder="Write something to add to your list"
+            label="Add new item"
+          />
+        </ListItem>
         {filteredTodoItems.map((todo) => (
           <TodoItem
             key={todo.id}
@@ -109,11 +117,6 @@ class TodosList extends Component {
           visibilityFilter={this.state.visibilityFilter}
           onSetVisibilityFilter={this.handleSetVisibilityFilter}
           todosListId={todosListId}
-        />
-        <TodoItemForm
-          onSubmit={this.handleTodoAdd}
-          placeholder="Write something to add to your list"
-          label="Add new item"
         />
         <TodoItems />
       </Paper>

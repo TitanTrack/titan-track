@@ -48,10 +48,12 @@ class TodosListMenuItemRaw extends Component {
       todosListId,
     } = this.props;
     return (this.state.isEdit ?
-        <ListTitleForm
-          title={todosList.title}
-          onSubmit={this.handleSubmit}
-        />
+        <ListItem>
+          <ListTitleForm
+            title={todosList.title}
+            onSubmit={this.handleSubmit}
+          />
+        </ListItem>
         :
         <ListItem
           component={Link}
