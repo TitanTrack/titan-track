@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { string, func } from 'prop-types';
+import { ListItem } from 'material-ui/List';
 
 import TodoItemForm from './TodoItemForm';
 
@@ -26,14 +27,16 @@ class EditTodoItem extends Component {
     } = this.props;
 
     return (
-      <TodoItemForm
-        onSubmit={this.handleTodoEdit}
-        placeholder="Type to change your item's title"
-        label="Edit item title"
-        title={title}
-        onCancel={toggleView}
-      />
-    )
+      <ListItem dense>
+        <TodoItemForm
+          onSubmit={this.handleTodoEdit}
+          placeholder="Type to change your item's title"
+          label="Edit item title"
+          title={title}
+          onCancel={toggleView}
+        />
+      </ListItem>
+    );
   }
 }
 

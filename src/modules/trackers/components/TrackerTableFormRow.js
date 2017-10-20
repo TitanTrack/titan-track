@@ -115,7 +115,7 @@ class TrackerTableFormRow extends Component {
         </TableCell>
         <TableCell numeric>
           <Button raised color="primary" onClick={this.handleSubmit}>
-            Submit
+            {this.props.trackerId ? 'Done' : 'Submit'}
           </Button>
         </TableCell>
       </TableRow>

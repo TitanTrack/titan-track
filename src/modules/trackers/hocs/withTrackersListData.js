@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { TRACKERS_ROOT_PATH } from '../consts';
 import { objToArr, generateNumericSort } from '../../utils/lib';
+import {
+  TRACKER_FRQUENCIES,
+} from '../consts';
 
 const groupTrackers = (trackers) => {
   const buckets = {};
+  TRACKER_FRQUENCIES.forEach((frequency) => {
+    buckets[frequency] = [];
+  });
   trackers.forEach((tracker) => {
-    const curBucket = buckets[tracker.frequency] || [];
-    curBucket.push(tracker);
-    buckets[tracker.frequency] = curBucket;
+    buckets[tracker.frequency].push(tracker);
   });
   return buckets;
 }

@@ -7,10 +7,10 @@ class TrackersPage extends Component {
   render () {
     return (
       <Grid container spacing={24}>
-        <Grid item sm={12} lg={6}>
+        <Grid item sm={12} lg={8}>
           <TrackersTable />
         </Grid>
-        <Grid item sm={12} lg={6}>
+        <Grid item sm={12} lg={4}>
           <TrackerInstanceFormsList />
         </Grid>
       </Grid>

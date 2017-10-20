@@ -60,6 +60,7 @@ class TrackersTableRow extends Component {
     return (
       this.state.isEdit ?
       <TrackerTableFormRow
+        trackerId={trackerId}
         onDone={this.handleCloseEdit}
         onSubmit={this.handleEdit}
         name={name}
