@@ -87,29 +87,17 @@ class TodosList extends Component {
     const filteredTodoItems = todoItems.filter(
       VISIBILITY_FILTER_FNS[this.state.visibilityFilter]
     );
-    const TodoItems = () => (
-      <List>
-        <Divider />
-        <ListItem dense>
-          <TodoItemForm
-            onSubmit={this.handleTodoAdd}
-            placeholder="Write something to add to your list"
-            label="Add new item"
-          />
-        </ListItem>
-        {filteredTodoItems.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todoId={todo.id}
-            title={todo.title}
-            completed={todo.completed}
-            onTodoToggle={this.generateOnTodoToggle(todo.id)}
-            onTodoDelete={this.generateOnTodoDelete(todo.id)}
-            onTodoEdit={this.generateOnTodoEdit(todo.id)}
-          />
-        ))}
-      </List>
-    );
+    const TodoItems = () => filteredTodoItems.map((todo) => (
+      <TodoItem
+        key={todo.id}
+        todoId={todo.id}
+        title={todo.title}
+        completed={todo.completed}
+        onTodoToggle={this.generateOnTodoToggle(todo.id)}
+        onTodoDelete={this.generateOnTodoDelete(todo.id)}
+        onTodoEdit={this.generateOnTodoEdit(todo.id)}
+      />
+    ));
     return (
       <Paper className={classes.paper}>
         <Topbar
@@ -118,7 +106,17 @@ class TodosList extends Component {
           onSetVisibilityFilter={this.handleSetVisibilityFilter}
           todosListId={todosListId}
         />
-        <TodoItems />
+        <List>
+          <Divider />
+          <ListItem dense>
+            <TodoItemForm
+              onSubmit={this.handleTodoAdd}
+              placeholder="Write something to add to your list"
+              label="Add new item"
+            />
+          </ListItem>
+          <TodoItems />
+        </List>
       </Paper>
     );
   }
