@@ -3,6 +3,12 @@ import { string, func } from 'prop-types';
 import { TableCell, TableRow } from 'material-ui/Table';
 import TrackerTableFormRow from './TrackerTableFormRow';
 import withTrackerMethods from '../hocs/withTrackerMethods';
+import {
+  TRACKER_INPUT_TYPES,
+  TRACKER_INPUT_TYPE_MAPPINGS,
+  TRACKER_FRQUENCIES,
+  TRACKER_FRQUENCY_MAPPINGS,
+} from '../consts';
 
 class TrackersTableRow extends Component {
   static propTypes = {
@@ -63,8 +69,8 @@ class TrackersTableRow extends Component {
     :
       <TableRow hover onClick={this.handleOpenEdit}>
         <TableCell>{name}</TableCell>
-        <TableCell numeric>{frequency}</TableCell>
-        <TableCell numeric>{inputType}</TableCell>
+        <TableCell numeric>{TRACKER_FRQUENCY_MAPPINGS[frequency]}</TableCell>
+        <TableCell numeric>{TRACKER_INPUT_TYPE_MAPPINGS[inputType]}</TableCell>
         <TableCell />
       </TableRow>
     )

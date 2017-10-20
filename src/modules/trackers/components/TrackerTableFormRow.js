@@ -6,6 +6,12 @@ import TextField from 'material-ui/TextField';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
 import Button from 'material-ui/Button';
+import {
+  TRACKER_INPUT_TYPES,
+  TRACKER_INPUT_TYPE_MAPPINGS,
+  TRACKER_FRQUENCIES,
+  TRACKER_FRQUENCY_MAPPINGS,
+} from '../consts';
 
 class TrackerTableFormRow extends Component {
   static propTypes = {
@@ -17,8 +23,8 @@ class TrackerTableFormRow extends Component {
 
   static defaultProps = {
     name: '',
-    frequency: 'daily',
-    inputType: 'numeric',
+    frequency: TRACKER_FRQUENCIES[0],
+    inputType: TRACKER_INPUT_TYPES[0],
   }
 
   constructor (props) {
@@ -86,9 +92,11 @@ class TrackerTableFormRow extends Component {
             onChange={this.handleFrequencyChange}
             input={<Input id="tracker-frequency" />}
           >
-            <MenuItem value="daily">Daily</MenuItem>
-            <MenuItem value="weekly">Weekly</MenuItem>
-            <MenuItem value="monthly">Monthly</MenuItem>
+          {TRACKER_FRQUENCIES.map((frequency) => (
+            <MenuItem key={frequency} value={frequency}>
+              {TRACKER_FRQUENCY_MAPPINGS[frequency]}
+            </MenuItem>
+          ))}
           </Select>
         </TableCell>
         <TableCell numeric>
@@ -98,13 +106,11 @@ class TrackerTableFormRow extends Component {
             onChange={this.handleInputTypeChange}
             input={<Input id="tracker-input-type" />}
           >
-            <MenuItem value="numeric">Numeric</MenuItem>
-            <MenuItem value="short">Short Answer</MenuItem>
-            <MenuItem value="paragraph">Paragraph</MenuItem>
-            <MenuItem value="yesno">Yes / No</MenuItem>
-            <MenuItem value="multiple">Multiple Choice</MenuItem>
-            <MenuItem value="checkbox">Checkbox</MenuItem>
-            <MenuItem value="dropdown">Dropdown</MenuItem>
+          {TRACKER_INPUT_TYPES.map((inputType) => (
+            <MenuItem key={inputType} value={inputType}>
+              {TRACKER_INPUT_TYPE_MAPPINGS[inputType]}
+            </MenuItem>
+          ))}
           </Select>
         </TableCell>
         <TableCell numeric>
