@@ -16,9 +16,8 @@ class ProfileNavItem extends Component {
       <ListItem dense>
         <Avatar
           alt="profile picture"
-          src="https://lh3.googleusercontent.com/-_acoJLGn3GY/AAAAAAAAAAI/AAAAAAAAAFw/-QaMEkW61Bw/photo.jpg"
         />
-      <ListItemText primary={"Kerem Kazan"} />
+      <ListItemText primary="Username" />
       </ListItem>
     );
   }
