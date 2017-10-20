@@ -56,8 +56,8 @@ class Dashboard extends Component {
                 When can I start using it?
               </Typography>
               <Typography component="p">
-                {`Come back on December 1st, 2017. If you're interested to use or participate, say Hi to us on `}
-                <a target="_BLANK_" href="https://gitter.im/titan-track/Lobby">Gitter</a>.
+                {`Come back on December 1st, 2017. If you're interested to use or participate, say hi to us on `}
+                <a target="_BLANK_" href="https://gitter.im/titan-track/Lobby">Gitter</a>. You can also take a look at our code: <a target="_BLANK_" href="https://github.com/TitanTrack/titan-track">https://github.com/TitanTrack/titan-track</a>
               </Typography>
             </CardContent>
           </Card>
@@ -80,7 +80,7 @@ class Dashboard extends Component {
                 What can I do now?
               </Typography>
               <Typography component="p">
-                {`Check out the links on the sidenav. As we build more tools, we'll put them to display there. For the time being, we only have todos and trackers, and thet are still a work in progress. Feel free to try them out to get a feel for them.`}
+                {`Check out the links on the sidenav. As we build more tools, we'll put them to display there. For the time being, we only have todos and trackers, and they are still a work in progress. Feel free to try them out to get a feel for them.`}
               </Typography>
             </CardContent>
           </Card>
