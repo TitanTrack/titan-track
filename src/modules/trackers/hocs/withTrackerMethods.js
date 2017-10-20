@@ -22,5 +22,9 @@ export default compose(
       updatedAt: Date.now(),
     })),
 
+    onTrackerDelete: () => {
+      return firebase.firestore().doc(getTrackerUrl(trackerId)).delete();
+    },
+
   }))
 );

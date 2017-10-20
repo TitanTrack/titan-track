@@ -52,7 +52,7 @@ class TrackersTable extends Component {
             {trackers.map((tracker, index) => {
               return (
                 <TrackerTableRow
-                  key={`tracker-${index}`}
+                  key={tracker.id}
                   name={tracker.name}
                   frequency={tracker.frequency}
                   inputType={tracker.inputType}

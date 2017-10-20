@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Table, { TableBody, TableCell, TableHead, TableRow, TableFooter } from 'material-ui/Table';
 import { MenuItem } from 'material-ui/Menu';
-import { bool, func, string } from 'prop-types';
+import { bool, func, string, object } from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
@@ -12,6 +12,15 @@ import {
   TRACKER_FRQUENCIES,
   TRACKER_FRQUENCY_MAPPINGS,
 } from '../consts';
+import withTrackerMethods from '../hocs/withTrackerMethods';
+import { compose } from 'recompose';
+import { withStyles } from 'material-ui/styles';
+
+const styles = {
+  deleteButton: {
+    marginRight: 10,
+  },
+};
 
 class TrackerTableFormRow extends Component {
   static propTypes = {
@@ -19,6 +28,8 @@ class TrackerTableFormRow extends Component {
     name: string.isRequired,
     frequency: string.isRequired,
     inputType: string.isRequired,
+    onTrackerDelete: func.isRequired,
+    classes: object.isRequired,
   }
 
   static defaultProps = {
@@ -72,7 +83,7 @@ class TrackerTableFormRow extends Component {
   }
 
   render () {
-    const { onDone } = this.props;
+    const { onDone, onTrackerDelete, classes } = this.props;
     return (
       <TableRow>
         <TableCell>
@@ -114,6 +125,18 @@ class TrackerTableFormRow extends Component {
           </Select>
         </TableCell>
         <TableCell numeric>
+          {this.props.trackerId ?
+            <Button
+              raised
+              color="secondary"
+              onClick={onTrackerDelete}
+              className={classes.deleteButton}
+            >
+              Delete
+            </Button>
+
+            :null
+          }
           <Button raised color="primary" onClick={this.handleSubmit}>
             {this.props.trackerId ? 'Done' : 'Submit'}
           </Button>
@@ -123,4 +146,7 @@ class TrackerTableFormRow extends Component {
   }
 }
 
-export default TrackerTableFormRow;
+export default compose(
+  withStyles(styles),
+  withTrackerMethods
+)(TrackerTableFormRow);
