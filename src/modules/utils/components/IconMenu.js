@@ -2,6 +2,13 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
+import { withStyles } from 'material-ui/styles';
+
+const styles = {
+  root: {
+    display: 'inline-block',
+  },
+};
 
 class IconMenu extends React.Component {
   state = {
@@ -23,8 +30,9 @@ class IconMenu extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         <IconButton
           aria-label="More"
           aria-owns={this.state.open ? 'long-menu' : null}
@@ -54,4 +62,4 @@ class IconMenu extends React.Component {
   }
 }
 
-export default IconMenu;
+export default withStyles(styles)(IconMenu);

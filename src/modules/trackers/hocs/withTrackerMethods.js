@@ -10,16 +10,15 @@ export default compose(
   firestoreConnect([{
     path: TRACKERS_ROOT_PATH,
   }]),
-  connect(({ firestore }) => ({
-    onTrackerAdd: (({
+  connect(({ firestore }, { trackerId }) => ({
+    onTrackerEdit: (({
       name,
       frequency,
       inputType,
-    }) => firebase.firestore().collection(TRACKERS_ROOT_PATH).add({
+    }) => firebase.firestore().doc(getTrackerUrl(trackerId)).update({
       name,
       frequency,
       inputType,
-      createdAt: Date.now(),
       updatedAt: Date.now(),
     })),
 

@@ -15,7 +15,6 @@ import { compose } from 'recompose';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
   table: {
@@ -54,16 +53,16 @@ class TrackersTable extends Component {
               return (
                 <TrackerTableRow
                   key={`tracker-${index}`}
-                  {...tracker}
+                  name={tracker.name}
+                  frequency={tracker.frequency}
+                  inputType={tracker.inputType}
+                  trackerId={tracker.id}
                 />
               );
             })}
           </TableBody>
           <TableFooter>
-            <TrackerTableFormRow
-              onSubmit={onTrackerAdd}
-              isInsert
-            />
+            <TrackerTableFormRow onSubmit={onTrackerAdd} />
           </TableFooter>
         </Table>
       </Paper>

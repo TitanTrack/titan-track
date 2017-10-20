@@ -9,7 +9,6 @@ import Button from 'material-ui/Button';
 
 class TrackerTableFormRow extends Component {
   static propTypes = {
-    isInsert: bool.isRequired,
     onSubmit: func.isRequired,
     name: string.isRequired,
     frequency: string.isRequired,
@@ -67,6 +66,7 @@ class TrackerTableFormRow extends Component {
   }
 
   render () {
+    const { onDone } = this.props;
     return (
       <TableRow>
         <TableCell>
