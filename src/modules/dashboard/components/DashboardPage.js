@@ -6,6 +6,8 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import logo from '../../control-panel/assets/logo.png';
 import Grid from 'material-ui/Grid';
+import Helmet from 'react-helmet';
+
 
 const styles = {
   card: {
@@ -22,6 +24,9 @@ class Dashboard extends Component {
     const { classes } = this.props;
     return (
       <Grid container>
+        <Helmet>
+          <title>Titan Track</title>
+        </Helmet>
         <Grid item sm={12} lg={4}>
           <Card className={classes.card}>
             <CardMedia
@@ -33,12 +38,23 @@ class Dashboard extends Component {
                 Welcome
               </Typography>
               <Typography component="p">
-                {`Titan Track is an open source project, in its path to become the ultimate self improvement platform.`}
+                {`Titan Track is an open source project, in its path to become the ultimate self improvement platform.`} Check out our <a target="_BLANK_" href="https://github.com/TitanTrack/titan-track">GitHub</a>, or come say hi at our <a target="_BLANK_" href="https://gitter.im/titan-track/Lobby">Gitter</a>.
               </Typography>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item sm={12} lg={4}>
+
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography type="headline" component="h2">
+                What's the mission?
+              </Typography>
+              <Typography component="p">
+                {`We believe that the self-help industry is broken, and that it can be fixed with open source code.`}
+              </Typography>
+            </CardContent>
+          </Card>
+
+
           <Card className={classes.card}>
             <CardContent>
               <Typography type="headline" component="h2">
@@ -49,20 +65,9 @@ class Dashboard extends Component {
               </Typography>
             </CardContent>
           </Card>
-
-          <Card className={classes.card}>
-            <CardContent>
-              <Typography type="headline" component="h2">
-                When can I start using it?
-              </Typography>
-              <Typography component="p">
-                {`Come back on December 1st, 2017. If you're interested to use or participate, say hi to us on `}
-                <a target="_BLANK_" href="https://gitter.im/titan-track/Lobby">Gitter</a>. You can also take a look at our code: <a target="_BLANK_" href="https://github.com/TitanTrack/titan-track">https://github.com/TitanTrack/titan-track</a>
-              </Typography>
-            </CardContent>
-          </Card>
         </Grid>
         <Grid item sm={12} lg={4}>
+
           <Card className={classes.card}>
             <CardContent>
               <Typography type="headline" component="h2">
@@ -77,13 +82,27 @@ class Dashboard extends Component {
           <Card className={classes.card}>
             <CardContent>
               <Typography type="headline" component="h2">
-                What can I do now?
+                What do you have so far?
               </Typography>
               <Typography component="p">
-                {`Check out the links on the sidenav. As we build more tools, we'll put them to display there. For the time being, we only have todos and trackers, and they are still a work in progress. Feel free to try them out to get a feel for them.`}
+                {`Check out the links on the sidenav. As we build more tools, we'll put them on display there. For the time being, we only have todos and trackers, and they are still a work in progress. Feel free to try them out to get a feel for them.`}
               </Typography>
             </CardContent>
           </Card>
+
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography type="headline" component="h2">
+                What can I do now?
+              </Typography>
+              <Typography component="p">
+                {`If you also believe that the self-help industry is broken, and if you want to help fix it, fill the form and let us get in touch with you.`}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item sm={12} lg={4}>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSedJSen0j_Czx-JCQR0c6YGdW9ivCOJVYVnF7H_3hbPpCwpsA/viewform?embedded=true" width="500" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
         </Grid>
       </Grid>
     )
